@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update, :index] do
       member do
         get "users/confirm" => "users#confirm"
         patch "users/withdrawal" => "users#withdrawal"
@@ -39,6 +39,9 @@ Rails.application.routes.draw do
       get "event_notices" => "event_notices#sent"
     end
     get "search" => "posts#search"
+    devise_scope :user do
+      post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

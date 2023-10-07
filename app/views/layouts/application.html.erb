@@ -11,8 +11,105 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <% if request.fullpath.include? "/admin" %>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", admin_items_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ユーザー一覧", admin_customers_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ジャンル一覧", admin_genres_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn nav-link ml-2" %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ユーザー一覧", users_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規投稿", new_post_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li>
+                    <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn nav-link ml-2" %>
+                  </li>
+                <% end %>
+                <% elsif user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ユーザー一覧", users_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "マイページ", user_path(current_user), class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規投稿", new_post_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn nav-link ml-2" %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", posts_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ユーザー一覧", users_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_user_registration_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: "btn nav-link ml-2" %>
+                  </li>
+                  <li>
+                    <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn nav-link ml-2" %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="float-right mt-3 pr-5">
+        <div class="form-group row">
+          <%= form_with url:search_path, method: :get, local: :true do |f| %>
+            <%= f.text_field :word, placeholder: "商品名を入力" %>
+            <%= f.submit "検索" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <% if flash[:notice] %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
+
+    <footer class="fixed-bottom">
+      <div class="container">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-auto text-center pt-3">
+            <p>©CopyRight hachu_mania.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
