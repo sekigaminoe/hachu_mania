@@ -4,6 +4,14 @@ class Public::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :user_state, only: [:create]
 
+  def after_sign_up_path_for(resource)
+      root_path
+  end
+
+  def after_sign_out_path_for(resource)
+      root_path
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

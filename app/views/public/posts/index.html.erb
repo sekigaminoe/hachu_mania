@@ -1,0 +1,12 @@
+<h2>投稿一覧</h2>
+
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <p><%= image_tag post.get_post_image(200, 200) %></p>
+      <p>投稿日:<%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+      <p>ジャンル:<%= post.genre.name %></p>
+      <p><%= link_to post.user.name, user_path(post.user) %></p>
+    <% end %>
+  </div>
+</div>

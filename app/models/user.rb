@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :group_users, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -19,17 +19,13 @@ class User < ApplicationRecord
   #自分をフォローしてる人
   has_many :followers, through: :reverse_of_relatiomships, source: :follower
 
-  has_one_attached :plofile_image
+  has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
-  def get_profile_image(width, height)
-    unless profile_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.png')
-      profile_image.attach(io: File.open(file_path), filename: 'no_image.png', content_type: 'image/png')
-    end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : "no_image.png"
   end
 
   def follow(user)
@@ -42,6 +38,18 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
+  end
+
+  GUEST_USER_EMAIL = "guest@example.com"
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 
 end
