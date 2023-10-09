@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'homes/top'
-  end
   #管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
@@ -42,6 +39,7 @@ Rails.application.routes.draw do
       get "event_notices" => "event_notices#sent"
     end
     get "search" => "posts#search"
+    get '/genre/search' => 'searches#genre_search'
     devise_scope :user do
       post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
     end

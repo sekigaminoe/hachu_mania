@@ -3,14 +3,43 @@
 
 header {
   background-color: #bce2e8;
-  // height: 110px;
 }
 
 .main-visual {
   width: 100%;
 }
 
+.nav-link {
+  background-color: #ebf6f7;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.heading {
+  background-color: #dcdcdc;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.profile-image {
+  border-radius: 50%;
+}
+
+.card {
+  width: 18rem;
+}
+
+.card-detail {
+  width: 25rem;
+}
+
 footer {
   background-color: #a0d8ef;
-  // height: 90px;
 }
+

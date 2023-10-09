@@ -1,0 +1,13 @@
+<h2>グループ一覧</h2>
+
+<%= @groups.each do |group| %>
+  <p><%= image_tag group.get_group_image(100, 100) %></p>
+  <p><%= group.name %></p>
+  <p><%= group.group_users.count %></p>
+  <p><%= group.introduction %></p>
+  <% if group.is_owned_by?(current_user) %>
+    <%= link_to "Edit", edit_group_path(group), class: "btn btn-success" %></td>
+  <% end %>
+<% end %>
+
+<%= link_to "グループ作成", new_group_path(@group), class: "btn btn-success" %>

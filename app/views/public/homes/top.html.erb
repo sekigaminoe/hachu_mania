@@ -7,6 +7,14 @@
             投稿一覧とユーザー一覧は、<br>
             登録をしなくても見ることができます。<br>
           </p>
+          <div>
+            <%= form_with url: genre_search_path, method: :get do |f| %>
+              <% @genres.each do |genre| %>
+                <%= link_to genre.name, posts_path(genre_id: genre.id), method: :get %>
+              <% end %>
+            <% end %>
+          </div>
+
         </div>
       </div>
 

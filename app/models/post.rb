@@ -9,19 +9,20 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
-  def get_post_image(width, height)
-    unless post_image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.png')
-      post_image.attach(io: File.open(file_path), filename: 'no_image.png', content_type: 'image/png')
-    end
-    post_image.variant(resize_to_limit: [width, height]).processed
+  def get_post_image
+    (post_image.attached?) ? post_image : "no_image.png"
   end
+
 
   def favorited_by?(user)
-    favotites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 
-  def self.search(keyword)
-    where("facility_name LIKE ?", "%#{keyword}%")
+  def self.search(search)
+     if search
+       where(["title LIKE ?", "%#{search}%"])
+     else
+       all
+     end
   end
 end

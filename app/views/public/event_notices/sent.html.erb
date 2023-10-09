@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>送信内容確認</h2>
+
+      <p>送信が完了しました。内容は以下の通りです。</p>
+
+      <h2>[タイトル]</h2>
+      <p><%= @title %></p>
+
+
+      <h2>[本文]</h2>
+      <p><%= @body %></p>
+  </div>
+</div>
+
+<%= link_to "グループ一覧", groups_path, class: "btn btn-primary" %>

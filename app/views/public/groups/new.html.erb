@@ -1,0 +1,24 @@
+<h2>グループ作成</h2>
+
+<%= form_with model: @group do |f| %>
+  <div class="field">
+    <%= f.label :グループ名 %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :紹介文 %>
+    <%= f.text_area :introduction %>
+  </div>
+
+  <div claass="field">
+    <%= f.label :グループ画像 %>
+    <%= f.file_field :group_image, accept: "image/*" %>
+  </div>
+
+  <div class="field">
+    <%= f.submit "作成", class: "btn btn-success" %>
+  </div>
+
+  <%= link_to "グループ一覧", groups_path, class: "btn btn-primary" %>
+<% end %>

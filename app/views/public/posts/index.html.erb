@@ -1,12 +1,33 @@
-<h2>投稿一覧</h2>
+<h2 class="heading ml-5">投稿一覧</h2>
 
 <div class="container">
   <div class="row">
-    <% @posts.each do |post| %>
-      <p><%= image_tag post.get_post_image(200, 200) %></p>
-      <p>投稿日:<%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
-      <p>ジャンル:<%= post.genre.name %></p>
-      <p><%= link_to post.user.name, user_path(post.user) %></p>
-    <% end %>
+    <div class="col-sm-6 mb-3 mb-sm-0 ml-5">
+      <div class="d-flex">
+        <div class="card">
+          <% @posts.each do |post| %>
+            <%= link_to post_path(post) do %>
+              <%= image_tag post.get_post_image, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <p>投稿日:<%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+              <% if post.favorited_by?(current_user) %>
+                <%= link_to post_favorites_path(post), method: :delete do %>
+                  <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                  <span style="color: red;"><%= @post.favorites.count %></span>
+                <% end %>
+              <% else %>
+                <%= link_to post_favorites_path(post), method: :post do %>
+                  <i class="fas fa-heart" aria-hidden="true"></i>
+                  <%= post.favorites.count %>
+                <% end %>
+              <% end %>
+              <p>ジャンル:<%= post.genre.name %></p>
+              <p><%= link_to post.user.name, user_path(post.user) %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
