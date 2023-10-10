@@ -1,52 +1,55 @@
-<h2 class="heading ml-5">ユーザー詳細</h2>
+<% if @user.id == current_user.id %>
+  <h2 class="heading ml-5">マイページ</h2>
+<% else %>
+  <h2 class="heading ml-5">ユーザー詳細</h2>
+<% end %>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mx-auto">
-     <div>
-        <%= image_tag @user.get_profile_image, size:'100x100', class: "profile-image" %>
-     </div>
-     <table class="table table-borderless">
-       <tr>
-         <th>ユーザー名</th>
-         <td><%= @user.name %></td>
-       </tr>
-
-       <tr>
-         <th>メールアドレス</th>
-         <td>
-           <% if @user.id == current_user.id %>
-             <%= @user.email %>
-           <% end %>
-         </td>
-       </tr>
-
-       <tr>
-         <th>自己紹介</th>
-         <td><%= @user.introduction %></td>
-       </tr>
-     </table>
-     <% if @user.id == current_user.id %>
-       <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
-     <% elsif current_user != @user %>
-       <% if current_user.following?(user) %>
-         <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete, class:"btn btn-info" %>
-       <% else %>
-         <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class:"btn btn-success" %>
-       <% end %>
-     <% end %>
+    <div class="col-2 mt-3">
+      <%= image_tag @user.get_profile_image, size:'100x100', class: "profile-image" %>
     </div>
-  </div>
-  <div class="row mt-5">
-    <div>
-     <% @user.posts.each do |post| %>
-       <div class="col-sm-6 mb-3 mb-sm-0">
-         <div class="card">
+    <div class="col-8">
+       <table class="table table-borderless">
+         <tr>
+           <th>ユーザー名</th>
+           <td><%= @user.name %></td>
+         </tr>
+
+         <tr>
+           <% if @user.id == current_user.id %>
+             <th>メールアドレス</th>
+             <td><%= @user.email %></td>
+           <% end %>
+         </tr>
+
+         <tr>
+           <th>自己紹介</th>
+           <td><%= @user.introduction %></td>
+         </tr>
+       </table>
+    </div>
+    <div class="col-2">
+      <% if @user.id == current_user.id %>
+        <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
+      <% elsif current_user != @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class:"btn btn-info" %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-success" %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @user.posts.each do |post| %>
+      <div class="col">
+         <div class="card mt-3 shadow-lg">
            <%= link_to post_path(post.id) do %>
              <%= image_tag post.get_post_image, class: "card-img-top" %>
            <% end %>
            <div class="card-body">
-             <p>投稿日:<%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
+             <p>投稿日:<%= post.updated_at.strftime("%Y/%m/%d") %></p>
              <p>ジャンル:<%= post.genre.name %></p>
              <p><%= link_to "詳細を見る", post_path(post) %></p>
              <% if @user.id == current_user.id %>
@@ -56,7 +59,7 @@
            </div>
          </div>
        </div>
-     <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

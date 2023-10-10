@@ -11,7 +11,7 @@ class Admin::GenresController < ApplicationController
       redirect_to edit_admin_genre_path(@genre)
     else
       flash[:alert] = "登録に失敗しました"
-      render :edit
+      render :index
     end
   end
 

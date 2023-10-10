@@ -1,0 +1,52 @@
+<h2 class="heading ml-5">投稿詳細</h2>
+
+<div class="container">
+
+  <div class="card card-detail mt-3 w-30 shadow-lg">
+    <%= image_tag @post.get_post_image, class: "card-img-top" %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-5 px-0">
+            <p>投稿日:<%= @post.updated_at.strftime("%Y/%m/%d") %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <p><%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %></p>
+          </div>
+          <div class="col-5 px-0">
+            <p><%= link_to @post.user.name, admin_user_path(@post.user) %></p>
+          </div>
+        </div>
+
+
+        <div>
+          <p>ジャンル:<%= @post.genre.name %></p>
+          <p class="card-title">タイトル:<%= @post.title %></p>
+          <p><%= @post.body %></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 mb-3 mb-sm-0 ml-5">
+      <table>
+        <tbody>
+          <% @post.post_comments.each do |post_comment| %>
+            <tr>
+              <td>
+                <%= link_to user_path(post_comment.user) do %>
+                  <%= image_tag post_comment.user.get_profile_image, size: '50x50', class: "profile-image" %><br>
+                  <%= post_comment.user.name %>
+                <% end %>
+              </td>
+              <td><%= post_comment.comment %></td>
+              <td>
+                <% if current_user.admin? %>
+                  <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

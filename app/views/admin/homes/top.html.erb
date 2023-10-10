@@ -1,2 +1,22 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<h2 class="heading ml-5">投稿一覧</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0 ml-5 mt-3">
+      <div class="d-flex">
+        <div class="card">
+          <% @posts.each do |post| %>
+            <%= link_to admin_post_path(post) do %>
+              <%= image_tag post.get_post_image, class: "card-img-top" %>
+            <% end %>
+            <div class="card-body">
+              <p>投稿日:<%= post.updated_at.strftime("%Y/%m/%d") %></p>
+              <p>ジャンル:<%= post.genre.name %></p>
+              <p><%= link_to post.user.name, user_path(post.user) %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

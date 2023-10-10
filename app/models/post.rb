@@ -6,8 +6,12 @@ class Post < ApplicationRecord
 
   has_one_attached :post_image
 
-  validates :title, presence: true
-  validates :body, presence: true
+  with_options presence: true, on: :publicize do
+    validates :title, presence: true
+    validates :body, presence: true
+  end
+  validates :title, length: { maximum: 15 }, on: :publicize
+  validates :body, length: { maximum: 80 }, on: :publicize
 
   def get_post_image
     (post_image.attached?) ? post_image : "no_image.png"

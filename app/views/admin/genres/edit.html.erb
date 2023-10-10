@@ -1,11 +1,11 @@
-<h2>ジャンル編集</h2>
+<h2 class="heading ml-5">ジャンル編集</h2>
 
 <div class="container">
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-center">
+    <div class="col-6 mt-5">
       <%= form_with model: @genre, url: admin_genre_path do |f| %>
-        <div class="mr-5 d-inline-block">ジャンル名</div>
-        <div class="mr-5 d-inline-block"><%= f.text_field :name, placeholder: "ジャンル名" %></div>
+        <div class="mr-5 d-inline-block"><% f.label :ジャンル名 %></div>
+        <div class="mr-5 d-inline-block"><%= f.text_field :name, size: "30" %></div>
         <%= f.submit "変更を保存", class:"btn btn-success" %>
       <% end %>
     </div>

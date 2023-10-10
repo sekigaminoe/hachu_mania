@@ -1,0 +1,34 @@
+<h2 class="heading ml-5">ユーザー一覧</h2>
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ユーザーID</th>
+          <th>プロフィール画像</th>
+          <th>ユーザー名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= image_tag user.get_profile_image, size: "50x50", class: "profile-image" %></td>
+            <td><%= link_to user.name, admin_user_path(user) %></td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.is_deleted %>
+                <p>退会</p>
+              <% else %>
+                <p>有効</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

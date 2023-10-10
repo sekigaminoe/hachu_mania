@@ -23,9 +23,17 @@
         <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
       </div>
 
-      <div class="field">
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      <div class="action">
+        <% if @post_recipe.is_draft == true %>
+          <%= f.submit "下書きを投稿", :name => 'publicize_draft', "btn btn-success" %>
+          <%= f.submit "下書きを更新", :name => 'update_draft', "btn btn-primary" %>
+        <% else %>
+          <%= f.submit "変更を保存", :name => 'update_post', class: "btn btn-success" %>
+        <% end %>
       </div>
     <% end %>
+    <div>
+      <u><%= link_to "レシピを削除", post_path(@post), method: :delete, data: {confirm: "このレシピを削除しますか？"}, class: "btn btn-danger" %></u>
+    </div>
   </div>
 </div>

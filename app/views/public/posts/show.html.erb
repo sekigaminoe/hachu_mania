@@ -2,42 +2,62 @@
 
 <div class="container">
   <div class="row">
-    <div class="d-flex">
-      <div class="card card-detail">
-        <%= image_tag @post.get_post_image, class: "card-img-top" %>
-        <div class="card-body">
-          <p>投稿日:<%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %></p>
-          <p><%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %></p>
-          <p><%= link_to @post.user.name, user_path(@post.user) %></p>
-          <% if @post.favorited_by?(current_user) %>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-              <span style="color: red;"><%= @post.favorites.count %></span>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              <i class="fas fa-heart" aria-hidden="true"></i>
-              <%= @post.favorites.count %>
-            <% end %>
-          <% end %>
-          <% if current_user != @post.user %>
-            <% if current_user.following?(@post.user) %>
-              <%= link_to "フォロー外す", user_relationships_path(@post.user), method: :delete, class: "btn btn-info" %>
+
+    <div class="card card-detail mt-3 w-30 shadow-lg">
+      <%= image_tag @post.get_post_image, class: "card-img-top" %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-5 px-0">
+            <p>投稿日:<%= @post.updated_at.strftime("%Y/%m/%d") %></p>
+          </div>
+          <div class="col-2 px-0">
+            <% if @post.favorited_by?(current_user) %>
+              <%= link_to post_favorites_path(@post), method: :delete do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <span style="color: red;"><%= @post.favorites.count %></span>
+              <% end %>
             <% else %>
-              <%= link_to "フォローする", user_relationships_path(@post.user), method: :post, class: "btn btn-primary" %>
+              <%= link_to post_favorites_path(@post), method: :post do %>
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <%= @post.favorites.count %>
+              <% end %>
             <% end %>
-          <% end %>
-          <% if @post.user.id == current_user.id %>
-            <p><%= link_to " 編集", edit_post_path(@post) %></p>
-            <p><%= link_to "削除", user_path(@post.user), method: :delete, data: {confirm: "削除しますか？"} %></p>
-          <% end %>
+          </div>
+          <div class="col-4 px-0">
+            <% if current_user != @post.user %>
+              <% if current_user.following?(@post.user) %>
+                <%= link_to "フォロー外す", user_relationships_path(@post.user), method: :delete, class: "btn btn-info" %>
+              <% else %>
+                <%= link_to "フォローする", user_relationships_path(@post.user), method: :post, class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <p><%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %></p>
+          </div>
+          <div class="col-5 px-0">
+            <p><%= link_to @post.user.name, user_path(@post.user) %></p>
+          </div>
+          <div class="col-2 px-0">
+            <% if @post.user.id == current_user.id %>
+              <p><%= link_to " 編集", edit_post_path(@post) %></p>
+              <p><%= link_to "削除", user_path(@post.user), method: :delete, data: {confirm: "削除しますか？"} %></p>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div>
           <p>ジャンル:<%= @post.genre.name %></p>
-          <p class="card-title"><%= @post.title %></p>
+          <p class="card-title">タイトル:<%= @post.title %></p>
           <p><%= @post.body %></p>
         </div>
       </div>
     </div>
-    <div class="col-sm-6 mb-3 mb-sm-0 ml-5">
+
+    <div class="col-md-6 mt-3 ml-5">
       <table>
         <tbody>
           <% @post.post_comments.each do |post_comment| %>
@@ -59,10 +79,11 @@
         </tbody>
       </table>
       <div>
-      <%= form_with model: [@post, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
+        <%= form_with model: [@post, @post_comment] do |f| %>
+          <%= f.text_area :comment, size: "40x5", placeholder: "コメントをここに" %>
+          <%= f.submit "送信する", class: "btn btn-success" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
