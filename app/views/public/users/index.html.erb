@@ -1,14 +1,24 @@
-<h2>ユーザー一覧</h2>
+<h2 class="heading">ユーザー一覧</h2>
 
-<div class="contaner">
+<div class="container">
   <div class="row">
     <% @users.each do |user| %>
-      <%= image_tag user.get_profile_image %>
-      <%= link_to user_path(user) do %>
-        <%= user.name %>
-      <% end %>
+      <div class="col-md-3">
+        <div class="card mt-3 shadow-lg card-height">
+          <div class="card-image">
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image, size: "200x200", class: "card-img-top profile-image" %>
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <p class="mt-3">
+              <%= link_to user.name, user_path(user) %>
+            </p>
+            <p>投稿数：<%= user.posts.count %></p>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
-  <%= link_to "グループを作成する", new_group_path, class: "btn btn-success" %>
-  <%= link_to "グループ一覧", groups_path, class: "btn btn-primary" %>
 </div>

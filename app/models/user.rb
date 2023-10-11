@@ -15,9 +15,9 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
 
   #フォローされる側
-  has_many :reverse_of_relationships, class_name: "Relationships", foreign_key: "followed_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   #自分をフォローしてる人
-  has_many :followers, through: :reverse_of_relatiomships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :profile_image
 

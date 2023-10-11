@@ -33,15 +33,15 @@ class Public::UsersController < ApplicationController
     flash[:notice] = "退会しました"
     redirect_to root_path
   end
-  
-  def favorite 
+
+  def favorites
     @user = User.find(params[:id])
-    favorite = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorite_posts = Post.find(favorite)
-    @post = Post.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+    # @post = Post.find(params[:id])
   end
-  
-  
+
+
   def follows
     user = User.find(params[:id])
     @users = user.followings

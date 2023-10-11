@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <table class="table">
+    <table class="table mt-3">
       <thead>
         <tr>
           <th>ユーザーID</th>
@@ -21,9 +21,9 @@
             <td><%= user.email %></td>
             <td>
               <% if user.is_deleted %>
-                <p>退会</p>
+                <p class="status-false"><strong>退会</strong></p>
               <% else %>
-                <p>有効</p>
+                <p class="status-false"><strong>有効</strong></p>
               <% end %>
             </td>
           </tr>

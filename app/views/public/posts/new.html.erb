@@ -1,32 +1,43 @@
-<h2 class="heading ml-5">新規投稿</h2>
+<h2 class="heading">新規投稿</h2>
 
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <%= form_with model: @post do |f| %>
-      <div class="field">
-        <%= f.label :タイトル %>
-        <%= f.text_field :title, class: "form-control post_title" %>
-      </div>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            <strong><%= f.label :タイトル %></strong><br>
+            <%= f.text_field :title, class: "form-control post_title", size: "40" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :本文 %>
-        <%= f.text_area :body, class: "form-control post-body" %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :本文 %></strong><br>
+            <%= f.text_area :body, class: "form-control post-body", size: "40x5" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :投稿写真 %>
-        <%= f.file_field :post_image, accept: "image/*" %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :投稿写真 %></strong><br>
+            <%= f.file_field :post_image, accept: "image/*" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :ジャンル %>
-        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :ジャンル %></strong>
+            <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.submit "投稿", :name => "post", class: "btn btn-success" %>
-        <%= f.submit "下書き", :name => "draft", class: "btn btn-primary" %>
-      </div>
+        <tr>
+          <td>
+            <%= f.submit "投稿", class: "btn btn-success" %>
+          </td>
+        </tr>
+      </table>
     <% end %>
   </div>
 </div>

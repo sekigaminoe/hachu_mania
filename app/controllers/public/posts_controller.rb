@@ -5,21 +5,33 @@ class Public::PostsController < ApplicationController
   end
 
   def create
+    # @user = current_user
     @post = Post.new(post_params)
-    if params[:post]
-      if @post.save(context: :publicize)
-        redirect_to post_path(@post), notice: "投稿しました！"
-      else
-        render :new, alert: "投稿できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
-    # 下書きボタンを押下した場合
+    if @post.save
+      flash[:notice] = "投稿しました"
+      redirect_to post_path(@post)
     else
-      if @post.update(is_draft: true)
-        redirect_to user_path(current_user), notice: "投稿を下書き保存しました！"
-      else
-        render :new, alert: "下書きに保存できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
+      @genres = Genre.all
+      flash[:alert] = "投稿に失敗しました"
+      render :new
     end
+    # @post.user_id = @user.id
+
+    # if params[:draft].present?
+    #   @post.status = :draft
+    # else
+    #   @post.status = :published
+    # end
+
+    # if @post.save
+    #   if @post.draft?
+    #     redirect_to dashboard_posts_path, notice: '下書きが保存されました。'
+    #   else
+    #     redirect_to post_path(@post), notice: '投稿が公開されました。'
+    #   end
+    # else
+    #   render :new
+    # end
   end
 
   def index
@@ -37,32 +49,37 @@ class Public::PostsController < ApplicationController
   end
 
   def update
+    # @user = current_user
     @post = Post.find(params[:id])
-    # 下書きレシピの更新（公開）の場合
-    if params[:publicize_draft]
-      @post.attributes = post_params.merge(is_draft: false)
-      if @post.save(context: :publicize)
-        redirect_to post_path(@post.id), notice: "投稿しました！"
-      else
-        @post.is_draft = true
-        render :edit, alert: "投稿できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
-    # 公開済みレシピの更新の場合
-    elsif params[:update_post]
-      @post.attributes = post_params
-      if @post.save(context: :publicize)
-        redirect_to post_path(@post.id), notice: "投稿内容をを更新しました！"
-      else
-        render :edit, alert: "投稿内容を更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
-    # 下書きレシピの更新（非公開）の場合
+    if @post.update(post_params)
+      flash[:notice] = "編集内容を更新しました"
+      redirect_to post_path(@post)
     else
-      if @post.update(post_params)
-        redirect_to post_path(@post.id), notice: "下書きを更新しました！"
-      else
-        render :edit, alert: "下書きの内容を更新できませんでした。お手数ですが、入力内容をご確認のうえ再度お試しください"
-      end
+      flash[:alert] = "編集内容の更新に失敗しました"
+      render :edit
     end
+
+    # @post.assign_attributes(post_params)
+
+    # if params[:draft].present?
+    #   @post.status = :draft
+    #   notice_message = "下書きを保存しました。"
+    #   redirect_path = dashboard_posts_path
+    # elsif params[:unpublished].present?
+    #   @post.status = :unpublished
+    #   notice_message = "非公開にしました。"
+    #   redirect_path = dashboard_posts_path
+    # else
+    #   @post.status = :published
+    #   notice_message = "投稿を更新しました。"
+    #   redirect_path = post_path(@post)
+    # end
+
+    # if @post.save
+    #   redirect_to redirect_path, notice: notice_message
+    # else
+    #   render :edit
+    # end
   end
 
   def destroy
@@ -74,7 +91,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:genre_id, :user_id, :post_image, :title, :body, :is_draft).merge(user_id: current_user.id)
+    params.require(:post).permit(:title, :body, :genre_id, :user_id, :post_image).merge(user_id: current_user.id)
   end
 
 end

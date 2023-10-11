@@ -1,32 +1,44 @@
-<h2>登録情報編集</h2>
+<h2 class="heading">登録情報編集</h2>
 
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <%= form_with model: @user do |f| %>
-      <div class="field">
-        <%= f.label :ユーザー名 %>
-        <%= f.text_field :name %>
-      </div>
+      <table>
+        <tr>
+          <td>
+            <storng><%= f.label :ユーザー名 %></storng><br>
+            <%= f.text_field :name, size: "40" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :メールアドレス %>
-        <%= f.email_field :email %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :メールアドレス %></strong><br>
+            <%= f.email_field :email, size: "40" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :自己紹介 %>
-        <%= f.text_area :introduction %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :自己紹介 %></strong><br>
+            <%= f.text_area :introduction, size: "40x5" %>
+          </td>
+        </dtr>
 
-      <div class="field">
-        <%= f.label :プロフィール画像 %>
-        <%= f.file_field :profile_image %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :プロフィール画像 %></strong><br>
+            <%= f.file_field :profile_image %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.submit "編集内容を保存", class: "btn btn-success" %>
-      </div>
+        <tr>
+          <td>
+            <%= f.submit "編集内容を保存", class: "btn btn-success mr-3" %>
+            <%= link_to "退会", users_confirm_user_path(current_user.id), class: "btn btn-danger" %>
+          </td>
+        </tr>
+      </table>
     <% end %>
-    <%= link_to "退会", users_confirm_user_path(current_user.id), class: "btn btn-danger" %>
   </div>
 </div>

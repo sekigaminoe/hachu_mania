@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       member do
         get "users/confirm" => "users#confirm"
         patch "users/withdrawal" => "users#withdrawal"
+        get :favorites
       end
       resource :relationships, only: [:create, :destroy]
       get "followings" => "relationships#followings", as: "followings"
