@@ -28,9 +28,9 @@
            <th>ステータス</th>
            <td>
              <% if @user.is_deleted %>
-                <p>退会</p>
+                <p class="status-true"><strong>退会</strong></p>
               <% else %>
-                <p>有効</p>
+                <p class="status-false"><strong>有効</strong></p>
               <% end %>
            </td>
          </tr>
@@ -40,7 +40,7 @@
       <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-3">
     <div>
      <% @user.posts.each do |post| %>
        <div class="col-sm-6 mb-3 mb-sm-0">

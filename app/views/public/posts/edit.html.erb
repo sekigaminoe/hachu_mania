@@ -1,39 +1,43 @@
-<h2>投稿内容編集</h2>
+<h2 class="heading">投稿内容編集</h2>
 
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <%= form_with model: @post do |f| %>
-      <div class="field">
-        <%= f.label :タイトル %>
-        <%= f.text_field :title %>
-      </div>
+      <table class="table table-borderless">
+        <tr>
+          <td>
+            <strong><%= f.label :タイトル %></strong><br>
+            <%= f.text_field :title, size: "40" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :本文 %>
-        <%= f.text_area :body %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :本文 %></strong><br>
+            <%= f.text_area :body, size: "40x5" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :投稿写真 %>
-        <%= f.file_field :post_image, accept: "image/*" %>
-      </div>
+        <tr>
+          <td>
+            <strong><%= f.label :投稿写真 %></strong><br>
+            <%= f.file_field :post_image, accept: "image/*" %>
+          </td>
+        </tr>
 
-      <div class="field">
-        <%= f.label :ジャンル %>
-        <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
-      </div>
+        <tr>
+          <td>
+            <strong class="mr-3"><%= f.label :ジャンル %></strong>
+             <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
+          </td>
+        </tr>
 
-      <div class="action">
-        <% if @post_recipe.is_draft == true %>
-          <%= f.submit "下書きを投稿", :name => 'publicize_draft', "btn btn-success" %>
-          <%= f.submit "下書きを更新", :name => 'update_draft', "btn btn-primary" %>
-        <% else %>
-          <%= f.submit "変更を保存", :name => 'update_post', class: "btn btn-success" %>
-        <% end %>
-      </div>
+        <tr>
+          <td>
+            <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+          </td>
+        </tr>
+      </table>
     <% end %>
-    <div>
-      <u><%= link_to "レシピを削除", post_path(@post), method: :delete, data: {confirm: "このレシピを削除しますか？"}, class: "btn btn-danger" %></u>
-    </div>
   </div>
 </div>

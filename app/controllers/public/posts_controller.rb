@@ -35,7 +35,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.search(params[:search])
+    @keyword = search_params[:keyword]
+    @posts = Post.search(@keyword)
+    @genres = Genre.all
   end
 
   def show
@@ -92,6 +94,10 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :genre_id, :user_id, :post_image).merge(user_id: current_user.id)
+  end
+
+  def search_params
+    params.permit(:keyword)
   end
 
 end

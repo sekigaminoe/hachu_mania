@@ -31,24 +31,24 @@ class Public::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.uodate(group_params)
+    if @group.update(group_params)
       flash[:notice] = "グループ情報内容を編集しました"
       redirect_to group_path(@group)
     else
-      flash[:alert] = "グループ情報内容を編集に失敗しました"
+      flash[:alert] = "グループ情報内容の編集に失敗しました"
       render :edit
     end
   end
 
-  def destoy
+  def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    redirect_to request.referer
+    redirect_to groups_path
   end
 
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :owner_id)
+    params.require(:group).permit(:name, :introduction, :group_image)
   end
 end

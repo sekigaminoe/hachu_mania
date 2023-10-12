@@ -1,19 +1,19 @@
 <h2 class="heading">投稿一覧</h2>
+<h3 class="ml-5 mt-3">「<%= @genre.name %>」検索結果</h3>
 
 <div class="container">
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="card mt-3 shadow-lg">
-          <%= link_to admin_post_path(post) do %>
+          <%= link_to post_path(post) do %>
             <%= image_tag post.get_post_image, class: "card-img-top" %>
           <% end %>
           <div class="card-body">
             <p>投稿日:<%= post.updated_at.strftime("%Y/%m/%d") %></p>
             <p>ジャンル:<%= post.genre.name %></p>
-            <p><%= link_to post.user.name, admin_user_path(post.user) %></p>
+            <p><%= link_to post.user.name, user_path(post.user) %></p>
           </div>
-
         </div>
       </div>
     <% end %>

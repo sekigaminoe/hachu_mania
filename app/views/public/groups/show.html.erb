@@ -1,20 +1,58 @@
-<h2>グループ詳細</h2>
+<div class="d-flex">
+  <h2 class="heading group-action">グループ詳細</h2>
+  <%= link_to "グループ一覧", groups_path, class: "btn btn-primary mt-3" %>
+</div>
 
-<p><%= image_tag @group.get_group_image(100, 100) %></p>
-<p>グループ名<%= @group.name %></p>
-<p>紹介文<%= @group.introduction %></p>
-<p>メンバー</p>
-<% @group.users.each do |user| %>
-  <li style="list-style: none;"><%= user.name %></li>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-2 mt-3">
+      <%= image_tag @group.get_group_image, size: "100x100", class: "profile-image" %>
+    </div>
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tr>
+          <th>グループ名</th>
+          <td><%= @group.name %></td>
+        </tr>
 
-<% if @group.is_owned_by?(current_user) %>
-  <%= link_to "編集", edit_group_path(@group), class: "btn btn-success" %>
-  <%= link_to 'イベントのお知らせを送る', new_group_event_notice_path(@group) %>
-<% elsif @group.includesUser?(current_user) %>
-  <%= link_to "グループから抜ける", group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-<% else %>
-  <%= link_to "グループに入る", group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
-<% end %>
+        <tr>
+          <th>紹介文</th>
+          <td><%= @group.introduction %></td>
+        </tr>
 
-<%= link_to "グループ一覧", groups_path, class: "btn btn-primary" %>
+        <tr>
+          <th>メンバー</th>
+          <td>
+            <% @group.users.each do |user| %>
+              <li style="list-style: none;"><%= user.name %></li>
+            <% end %>
+          </td>
+        </tr>
+
+        <tr>
+          <th>オーナー名</th>
+          <td><%= @group.owner.name %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-4 mt-3">
+      <% if @group.is_owned_by?(current_user) %>
+        <%= link_to "編集", edit_group_path(@group), class: "btn btn-success mr-3" %>
+        <%= link_to "削除", group_path, method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %><br>
+        <%= link_to new_group_event_notice_path(@group), class: "action-link" do %>
+          <i class="fa-solid fa-calendar-days"></i>
+          イベントのお知らせを送る
+        <% end %>
+      <% elsif @group.includesUser?(current_user) %>
+        <%= link_to "グループから抜ける", group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+      <% else %>
+        <%= link_to "グループに入る", group_group_users_path(@group), method: :post, class: "btn btn-sm btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

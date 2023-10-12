@@ -27,7 +27,7 @@
 
         <tr>
           <td>
-            <strong><%= f.label :ジャンル %></strong>
+            <strong class="mr-3"><%= f.label :ジャンル %></strong>
             <%= f.collection_select :genre_id, @genres, :id, :name, include_blank: "--選択して下さい--" %>
           </td>
         </tr>

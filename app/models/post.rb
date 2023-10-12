@@ -24,9 +24,9 @@ class Post < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
-  def self.search(search)
-     if search
-       where(["title LIKE ?", "%#{search}%"])
+  def self.search(keyword)
+     if keyword
+       where(["title LIKE ?", "%#{keyword}%"])
      else
        all
      end

@@ -4,21 +4,20 @@
       <%= image_tag "reptail.JPG",alt: "IMG", size: "1000x600" %>
     </div>
     <div class="col-md-4 p-5 main-visual-text">
-      <h4 class="text"><strong>ようこそはちゅマニアへ！</strong></h4>
+      <h4 class="text"><strong>ようこそ、はちゅマニアへ！</strong></h4>
       <p>
         このサイトは、爬虫類好きが集まるコミュニティサイトです。<br>
         爬虫類について自由に投稿し、情報共有をすることできます。<br>
-        投稿一覧とユーザー一覧は、<br>
-        登録をしなくても見ることができます。<br>
+        ゲストログインは登録しなくても、見ることができます。<br>
       </p>
-    </div>
-
-    <div>
-      <%= form_with url: genre_search_path, method: :get do |f| %>
+      <div class="card headline genre-card mt-6">
+        <h6 class="card-header text-center"><strong>ジャンル検索</strong></h6>
         <% @genres.each do |genre| %>
-          <%= link_to genre.name, posts_path(genre_id: genre.id), method: :get %>
+          <li class="list-group-item text-center">
+            <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get, class: "genre-text" %>
+          </li>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

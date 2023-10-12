@@ -1,0 +1,37 @@
+<h2 class="heading">投稿一覧</h2>
+<h3 class="ml-5 mt-3">
+  <% if @keyword.present? %>
+    <%= "「#{@keyword}」の検索結果" %>
+  <% end %>
+</h3>
+
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-3">
+        <div class="card mt-3 shadow-lg">
+          <%= link_to post_path(post) do %>
+            <%= image_tag post.get_post_image, class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <p>投稿日:<%= post.updated_at.strftime("%Y/%m/%d") %></p>
+            <p>ジャンル:<%= post.genre.name %></p>
+            <p>
+              <%= link_to user_path(post.user), class: "action-link" do %>
+                <i class="fa-solid fa-user"></i>
+                <%= post.user.name %>
+              <% end %>
+            </p>
+            <p>
+              <%= link_to post_path(post), class: "action-link" do %>
+                <i class="fa-solid fa-book"></i>
+                この投稿の詳細を見る
+              <% end %>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
