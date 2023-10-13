@@ -31,4 +31,8 @@ class Post < ApplicationRecord
        all
      end
   end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
+  end
 end

@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="card card-detail mt-3 w-30 shadow-lg">
+    <div class="card card-detail mt-3 shadow-lg">
       <%= link_to post_path(@post) do %>
         <%= image_tag @post.get_post_image, class: "card-img-top" %>
       <% end %>
@@ -14,15 +14,24 @@
         </div>
         <div class="row">
           <div class="col-3">
-            <p><%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %></p>
+            <p>
+              <%= link_to admin_user_path(@post.user) do %>
+                <%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %>
+              <% end %>
+            </p>
           </div>
           <div class="col-5 px-0">
-            <p><%= link_to @post.user.name, admin_user_path(@post.user) %></p>
+            <p>
+              <%= link_to admin_user_path(@post.user), class: "action-link" do %>
+                <i class="fa-solid fa-user"></i>
+                <%= @post.user.name %>
+              <% end %>
+            </p>
           </div>
         </div>
         <div>
-          <p>ジャンル:<%= @post.genre.name %></p>
-          <p class="card-title">タイトル:<%= @post.title %></p>
+          <p>[ジャンル] <%= @post.genre.name %></p>
+          <p class="card-title">[タイトル] <%= @post.title %></p>
           <p><%= @post.body %></p>
         </div>
       </div>
@@ -34,7 +43,7 @@
           <% @post.post_comments.each do |post_comment| %>
             <tr>
               <td>
-                <%= link_to user_path(post_comment.user) do %>
+                <%= link_to user_path(post_comment.user), class: "action-link" do %>
                   <%= image_tag post_comment.user.get_profile_image, size: '50x50', class: "profile-image mr-5" %><br>
                   <%= post_comment.user.name %>
                 <% end %>

@@ -1,20 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
 
-
 .header-color {
   background-color: #bce2e8;
 }
 
-// main {
-//   // background-image: url("../images/no_image.png");
-//   background-image: url("no_image.png");
-//   background-size: cover;
-//   width: 100%;
-//   height: 600px;
-// }
-
 .main-visual {
-  // background-image: url("/no_image.png");
   width: 100%;
   height: 500px;
 }
@@ -43,15 +33,11 @@
 }
 
 .card {
-  width: 18rem;
+  width: 17rem;
 }
 
 .card-detail {
   width: 25rem;
-}
-
-footer {
-  background-color: #a0d8ef;
 }
 
 .main-visual-text {
@@ -95,7 +81,7 @@ footer {
 }
 
 .card-header {
-  background-color: #fdd35c;
+  background-color: #a0d8ef;
 }
 
 .genre-text {
@@ -104,4 +90,16 @@ footer {
 
 .action-link {
   color: #696969;
+}
+
+.alert:not(:last-child){
+	margin-bottom: 0;
+}
+
+footer {
+  background-color: #a0d8ef;
+}
+
+main {
+  margin-bottom: 100px;
 }

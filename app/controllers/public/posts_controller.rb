@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+   before_action :guest_check, only: [:new]
   def new
     @post = Post.new
     @genres = Genre.all
@@ -36,7 +37,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @keyword = search_params[:keyword]
-    @posts = Post.search(@keyword)
+    @posts = Post.search(@keyword).page(params[:page]).per(4)
     @genres = Genre.all
   end
 
@@ -84,12 +85,6 @@ class Public::PostsController < ApplicationController
     # end
   end
 
-  def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to request.referer
-  end
-
   private
 
   def post_params
@@ -100,4 +95,24 @@ class Public::PostsController < ApplicationController
     params.permit(:keyword)
   end
 
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to posts_path
+    end
+  end
+
+  # def ensure_guest_user
+  #   @post = Post.find(params[:id])
+  #   @user = @post.user
+  #   if @user.guest_user?
+  #     redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+  #   end
+  # end
+
+  def guest_check
+    if current_user == User.find(5)
+      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+    end
+  end
 end

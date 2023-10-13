@@ -1,9 +1,8 @@
-<h2 class="heading ml-5">投稿詳細</h2>
+<h2 class="heading">投稿詳細</h2>
 
 <div class="container">
   <div class="row">
-
-    <div class="card card-detail mt-3 w-30 shadow-lg">
+    <div class="card card-detail mt-3 shadow-lg">
       <%= image_tag @post.get_post_image, class: "card-img-top" %>
       <div class="card-body">
         <div class="row">
@@ -38,20 +37,35 @@
             <p><%= image_tag @post.user.get_profile_image, size: '50x50', class: "profile-image" %></p>
           </div>
           <div class="col-5 px-0">
-            <p><%= link_to @post.user.name, user_path(@post.user) %></p>
+            <p>
+              <%= link_to user_path(@post.user), class: "action-link" do %>
+                <i class="fa-solid fa-user"></i>
+                <%= @post.user.name %>
+              <% end %>
+            </p>
           </div>
           <div class="col-2 px-0">
             <% if @post.user.id == current_user.id %>
-              <p><%= link_to " 編集", edit_post_path(@post) %></p>
-              <p><%= link_to "削除", user_path(@post.user), method: :delete, data: {confirm: "削除しますか？"} %></p>
+              <p>
+                <%= link_to edit_post_path(@post), class: "action-link" do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  編集
+                <% end %>
+              </p>
+              <p>
+                <%= link_to user_path(@post.user), method: :delete, data: {confirm: "削除しますか？"}, class: "action-link" do %>
+                  <i class="fa-solid fa-trash"></i>
+                  削除
+                <% end %>
+              </p>
             <% end %>
           </div>
         </div>
 
 
         <div>
-          <p>ジャンル:<%= @post.genre.name %></p>
-          <p class="card-title">タイトル:<%= @post.title %></p>
+          <p>[ジャンル] <%= @post.genre.name %></p>
+          <p class="card-title">[タイトル] <%= @post.title %></p>
           <p><%= @post.body %></p>
         </div>
       </div>
@@ -64,7 +78,7 @@
           <% @post.post_comments.each do |post_comment| %>
             <tr>
               <td>
-                <%= link_to user_path(post_comment.user) do %>
+                <%= link_to user_path(post_comment.user), class: "action-link" do %>
                   <%= image_tag post_comment.user.get_profile_image, size: '50x50', class: "profile-image mr-3" %><br>
                   <%= post_comment.user.name %>
                 <% end %>

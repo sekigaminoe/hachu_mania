@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "homes#top"
-    resources :posts, only: [:index, :show] do
+    resources :posts, only: [:show] do
       resources :post_comments, only: [:destroy]
     end
     resources :genres, only: [:index, :create, :edit, :update]
@@ -15,12 +15,16 @@ Rails.application.routes.draw do
   #ユーザー用
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: "public/sessions"
   }
+
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
 
   scope module: :public do
     root to: "homes#top"
-    resources :users, only: [:show, :edit, :update, :index] do
+    resources :users, only: [:show, :edit, :update, :index, :destroy] do
       member do
         get "users/confirm" => "users#confirm"
         patch "users/withdrawal" => "users#withdrawal"
@@ -39,12 +43,9 @@ Rails.application.routes.draw do
       resources :event_notices, only: [:new, :create]
       get "event_notices" => "event_notices#sent"
     end
-    get "search" => "posts#search"
-    get '/genre/search' => 'searches#genre_search'
-    devise_scope :user do
-      post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
-    end
-  end
 
+    get "search" => "posts#search"
+    get "/genre/search" => "searches#genre_search"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,11 +1,14 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit]
+
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).per(4)
   end
 
   def index
-    @users = User.all
+    @users = User.where(is_deleted: false).page(params[:page]).per(4)
   end
 
   def edit
@@ -34,11 +37,17 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to root_path
+  end
+
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
-    # @post = Post.find(params[:id])
+    @favorites = Favorite.page(params[:page]).per(5)
   end
 
 
@@ -49,7 +58,7 @@ class Public::UsersController < ApplicationController
 
   def followers
     user = User.find(params[:id])
-    @user = user.followers
+    @users = user.followers
   end
 
   private

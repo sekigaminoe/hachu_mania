@@ -22,7 +22,12 @@
                   <%= image_tag user.get_profile_image, size: "50x50", class: "profile-image" %>
                 <% end %>
               </td>
-              <td><%= link_to user.name, user_path(user) %></td>
+              <td>
+                <%= link_to user_path(user), class: "action-link" do %>
+                  <i class="fa-solid fa-user"></i>
+                  <%= user.name %>
+                <% end %>
+              </td>
 
               <td>フォロー数:<%= user.followings.count %></td>
               <td>フォロワー数:<%= user.followers.count %></td>
@@ -42,5 +47,8 @@
     <% else %>
       <p class="mt-3">ユーザーはいません</p>
     <% end %>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <%= paginate @users %>
   </div>
 </div>

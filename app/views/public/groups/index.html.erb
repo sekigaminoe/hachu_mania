@@ -24,9 +24,18 @@
                 <%= image_tag group.get_group_image, size: "50x50", class: "profile-image" %>
               <% end %>
             </td>
-            <td><%= link_to group.name, group_path(group) %></td>
+            <td>
+              <%= link_to group_path(group), class: "action-link" do %>
+                <%= group.name %>
+              <% end %>
+            </td>
             <td><%= group.group_users.count %></td>
-            <td><%= link_to group.owner.name, user_path(@user) %></td>
+            <td>
+              <%= link_to user_path(@user), class: "action-link" do %>
+                <i class="fa-solid fa-user"></i>
+                <%= group.owner.name %>
+              <% end %>
+            </td>
             <td><%= group.introduction %></td>
             <td>
               <% if group.is_owned_by?(current_user) %>
@@ -37,5 +46,8 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="row justify-content-center mt-5">
+    <%= paginate @groups %>
   </div>
 </div>

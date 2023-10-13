@@ -16,12 +16,16 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= user.id %></td>
-            <td><%= image_tag user.get_profile_image, size: "50x50", class: "profile-image" %></td>
-            <td><%= link_to user.name, admin_user_path(user) %></td>
+            <td>
+              <%= link_to admin_user_path(user) do %>
+                <%= image_tag user.get_profile_image, size: "50x50", class: "profile-image" %>
+              <% end %>
+            </td>
+            <td><%= link_to user.name, admin_user_path(user), class: "action-link" %></td>
             <td><%= user.email %></td>
             <td>
               <% if user.is_deleted %>
-                <p class="status-false"><strong>退会</strong></p>
+                <p class="status-true"><strong>退会</strong></p>
               <% else %>
                 <p class="status-false"><strong>有効</strong></p>
               <% end %>
@@ -30,5 +34,8 @@
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <%= paginate @users %>
   </div>
 </div>

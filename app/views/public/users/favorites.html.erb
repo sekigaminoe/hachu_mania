@@ -15,16 +15,28 @@
         <% @favorite_posts.each do |post| %>
           <tr>
             <td>
-              <%= link_to post_path(post)  do %>
-                <%= image_tag post.get_post_image, size: "150x100" %>
+              <%= link_to post_path(post) do %>
+                <%= image_tag post.get_post_image, size: "100x60" %>
               <% end %>
             </td>
-            <td><%= post.title %></td>
+            <td>
+              <%= link_to post_path(post), class: "action-link" do %>
+                <%= post.title %>
+              <% end %>
+            </td>
             <td><%= post.genre.name %> </td>
-            <td><%= link_to post.user.name, user_path(post.user) %></td>
+            <td>
+              <%= link_to user_path(post.user), class: "action-link" do %>
+                <i class="fa-solid fa-user"></i>
+                <%= post.user.name %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @favorites %>
   </div>
 </div>
