@@ -1,4 +1,6 @@
 class Public::GroupsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @group = Group.new
   end
@@ -17,11 +19,9 @@ class Public::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
-      flash[:notice] = "グループを作成しました"
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), notice: "グループを作成しました。"
     else
-      flash[:alert] = "グループの作成に失敗しました"
-      render :new
+      render :new, alert: "グループの作成に失敗しました。"
     end
   end
 
@@ -32,11 +32,9 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      flash[:notice] = "グループ情報内容を編集しました"
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), notice: "グループ情報内容を編集しました。"
     else
-      flash[:alert] = "グループ情報内容の編集に失敗しました"
-      render :edit
+      render :edit, alert: "グループ情報内容の編集に失敗しました。"
     end
   end
 

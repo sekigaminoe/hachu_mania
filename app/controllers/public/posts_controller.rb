@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
    before_action :guest_check, only: [:new]
+
   def new
     @post = Post.new
     @genres = Genre.all
@@ -9,12 +10,10 @@ class Public::PostsController < ApplicationController
     # @user = current_user
     @post = Post.new(post_params)
     if @post.save
-      flash[:notice] = "投稿しました"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "投稿しました。"
     else
       @genres = Genre.all
-      flash[:alert] = "投稿に失敗しました"
-      render :new
+      render :new, alert: "投稿に失敗しました。"
     end
     # @post.user_id = @user.id
 
@@ -52,14 +51,11 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    # @user = current_user
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "編集内容を更新しました"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "編集内容を更新しました。"
     else
-      flash[:alert] = "編集内容の更新に失敗しました"
-      render :edit
+      render :edit, alert: "編集内容の更新に失敗しました。"
     end
 
     # @post.assign_attributes(post_params)
@@ -83,6 +79,12 @@ class Public::PostsController < ApplicationController
     # else
     #   render :edit
     # end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました。"
   end
 
   private
@@ -112,7 +114,7 @@ class Public::PostsController < ApplicationController
 
   def guest_check
     if current_user == User.find(5)
-      redirect_to root_path,notice: "このページを見るには会員登録が必要です。"
+      redirect_to root_path, notice: "新規投稿をするには会員登録が必要です。"
     end
   end
 end

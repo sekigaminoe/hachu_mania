@@ -1,14 +1,18 @@
 <div class="container">
-  <div class="row">
-    <h2>本当に退会しますか</h2>
+  <div class="row justify-content-center mt-5">
+    <h2>本当に退会しますか?</h2>
+  </div>
 
-    <p>
+  <div class="row justify-content-center mt-5">
+    <p class="text-center">
       退会するとユーザー登録情報や、<br>
       これまでの投稿が見れなくなります。<br>
       退会する場合は「退会する」をクリックしてください。
     </p>
+  </div>
 
-    <%= link_to "退会しない", user_path(current_user), class: "btn btn-primary" %>
+  <div class="row justify-content-center mt-5">
+    <%= link_to "退会しない", user_path(current_user), class: "btn btn-primary mr-5" %>
     <%= link_to "退会する", user_path(current_user), method: :delete, class: "btn btn-danger" %>
   </div>
 </div>

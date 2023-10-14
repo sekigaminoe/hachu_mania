@@ -2,6 +2,9 @@
 
 <div class="container">
   <div class="row justify-content-center">
+    <%= render "layouts/errors", obj: @user %>
+  </div>
+  <div class="row justify-content-center">
     <%= form_with model: @user do |f| %>
       <table>
         <tr>
@@ -33,7 +36,7 @@
         </tr>
       </table>
       <div class="mt-5">
-        <%= f.submit "編集内容を保存", class: "btn btn-success mr-5" %>
+        <%= f.submit "編集内容を更新", class: "btn btn-success mr-5" %>
         <%= link_to "退会", users_confirm_user_path(current_user.id), class: "btn btn-danger" %>
       </div>
     <% end %>

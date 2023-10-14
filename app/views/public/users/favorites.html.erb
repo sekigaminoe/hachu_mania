@@ -9,6 +9,7 @@
           <th>タイトル</th>
           <th>ジャンル</th>
           <th>ユーザー名</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,9 @@
                 <i class="fa-solid fa-user"></i>
                 <%= post.user.name %>
               <% end %>
+            </td>
+            <td>
+              <%= render "public/favorites/btn", post: post %>
             </td>
           </tr>
         <% end %>

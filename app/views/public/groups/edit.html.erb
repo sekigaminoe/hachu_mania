@@ -2,30 +2,9 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <%= form_with model: @group do |f| %>
-      <table class="table table-borderless">
-        <tr>
-          <td>
-            <strong><%= f.label :グループ名 %></strong><br>
-            <%= f.text_field :name, placeholder: "グループ名", size: "40" %>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <strong><%= f.label :紹介文 %></strong><br>
-            <%= f.text_area :introduction, placeholder: "紹介文", size: "40x5" %>
-          </td>
-        </tr>
-
-        <tr>
-          <td>
-            <strong><%= f.label :グループ画像 %></strong><br>
-            <%= f.file_field :group_image, accept: "image/*" %>
-          </td>
-        </tr>
-      </table>
-      <%= f.submit "編集内容を保存", class: "btn btn-success" %>
-    <% end %>
+    <%= render "layouts/errors", obj: @group %>
+  </div>
+  <div class="row justify-content-center">
+    <%= render "public/groups/form", group: @group %>
   </div>
 </div>

@@ -1,0 +1,14 @@
+<% post.post_comments.each do |post_comment| %>
+  <tr>
+    <td>
+      <%= link_to admin_user_path(post_comment.user), class: "action-link" do %>
+        <%= image_tag post_comment.user.get_profile_image, size: "50x50", class: "profile-image mr-5" %><br>
+        <%= post_comment.user.name %>
+      <% end %>
+    </td>
+    <td><%= post_comment.comment %></td>
+    <td>
+      <%= link_to "削除", admin_post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-danger" %>
+    </td>
+  </tr>
+<% end %>

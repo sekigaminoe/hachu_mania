@@ -1,5 +1,4 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
 
   def show
@@ -18,8 +17,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "編集内容の保存に成功しました"
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "編集内容の保存に成功しました。"
     else
       render :edit
     end
@@ -33,14 +31,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会しました"
-    redirect_to root_path
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "退会しました。ご利用ありがとうございました。"
   end
 
   def favorites

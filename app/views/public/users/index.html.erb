@@ -26,13 +26,7 @@
                 </p>
               </div>
               <div class="col-6 px-0">
-                <% if current_user != user %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-sm btn-info" %>
-                  <% else %>
-                    <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-sm btn-primary" %>
-                  <% end %>
-                <% end %>
+                <%= render "public/relationships/btn", user: user %>
               </div>
             </div>
             <p>投稿数：<%= user.posts.count %></p>

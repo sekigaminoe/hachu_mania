@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin!
+
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(4)
@@ -15,11 +17,9 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "編集内容を更新しました"
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path(@user), notice: "編集内容を更新しました"
     else
-      flash[:notice] = "編集内容の更新に失敗しました"
-      render :edit
+      render :edit, alert: "編集内容の更新に失敗しました"
     end
   end
 
