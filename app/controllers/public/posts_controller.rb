@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
    before_action :guest_check, only: [:new]
+   before_action :authenticate_user!
 
   def new
     @post = Post.new
