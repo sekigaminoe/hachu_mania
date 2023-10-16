@@ -1,0 +1,47 @@
+<h2 class="heading"><%= @user.name %>さんとのチャット</h2>
+
+<div class="container">
+  <div class="message mt-3">
+    <% @chats.each do |chat| %>
+      <% if chat.user_id == current_user.id %>
+        <p style="text-align: right;">
+          <%= link_to  user_path(chat.user) do %>
+            <%= image_tag chat.user.get_profile_image, size: "50x50", class: "profile-image" %>
+          <% end %>
+          <%= link_to user_path(chat.user), class: "action-link" do %>
+            <i class="fa-solid fa-user"></i>
+            <%= chat.user.name %>
+          <% end %>
+        </p>
+        <div style="text-align: right;">
+          <span class="chat-text1"><%= chat.message %></span>
+        </div>
+      <% else %>
+        <p style="text-align: left;">
+          <%= link_to user_path(chat.user) do %>
+            <%= image_tag chat.user.get_profile_image, size: "50x50", class: "profile-image" %>
+          <% end %>
+          <%= link_to user_path(chat.user), class: "action-link" do %>
+            <i class="fa-solid fa-user"></i>
+            <%= chat.user.name %>
+          <% end %>
+        </p>
+        <div style="text-align: left;">
+          <span class="chat-text2"><% chat.message %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="errors">
+    <%= render "layouts/errors", obj: @chat %>
+  </div>
+
+  <div class="mt-5" style="text-align: right;">
+    <%= form_with model: @chat do |f| %>
+      <%= f.text_field :message, size: "30" %>
+      <%= f.hidden_field :room_id %>
+      <%= f.submit "送信", class: "btn btn-sm btn-success" %>
+    <% end %>
+  </div>
+</div>
