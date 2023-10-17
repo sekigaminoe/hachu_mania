@@ -3,6 +3,7 @@
     <td>
       <%= link_to admin_user_path(post_comment.user), class: "action-link" do %>
         <%= image_tag post_comment.user.get_profile_image, size: "50x50", class: "profile-image mr-5" %><br>
+        <i class="fa-solid fa-user"></i>
         <%= post_comment.user.name %>
       <% end %>
     </td>

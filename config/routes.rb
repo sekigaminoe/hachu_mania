@@ -43,8 +43,7 @@ Rails.application.routes.draw do
       resources :event_notices, only: [:new, :create]
       get "event_notices" => "event_notices#sent"
     end
-    resources :chats, only: [:show, :create]
-
+    resources :chats, only: [:create, :show]
     get "search" => "posts#search"
     get "/genre/search" => "searches#genre_search"
   end

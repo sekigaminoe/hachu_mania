@@ -10,15 +10,15 @@
           <div class="col-5 px-0">
             <p>投稿日:<%= @post.updated_at.strftime("%Y/%m/%d") %></p>
           </div>
-          <div class="col-2 px-0">
+          <div class=<%= "favorite-" + @post.id.to_s %> >
             <%= render "public/favorites/btn", post: @post %>
           </div>
-          <div class="col-4 px-0">
+          <div class="col-4 px-0 ml-5">
             <% if current_user != @post.user %>
               <% if current_user.following?(@post.user) %>
-                <%= link_to "フォロー外す", user_relationships_path(@post.user), method: :delete, class: "btn btn-info" %>
+                <%= link_to "フォロー外す", user_relationships_path(@post.user), method: :delete, class: "btn btn-sm btn-info" %>
               <% else %>
-                <%= link_to "フォローする", user_relationships_path(@post.user), method: :post, class: "btn btn-primary" %>
+                <%= link_to "フォローする", user_relationships_path(@post.user), method: :post, class: "btn btn-sm btn-primary" %>
               <% end %>
             <% end %>
           </div>
@@ -66,7 +66,9 @@
       <h5>＜コメント＞</h5>
       <table>
         <tbody>
-          <%= render "public/post_comments/comment", post: @post %>
+          <div id="post-comments-index">
+            <%= render "public/post_comments/index", post: @post %>
+          </div>
         </tbody>
       </table>
       <div class="mt-3">

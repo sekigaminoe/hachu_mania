@@ -3,13 +3,14 @@
     <td>
       <%= link_to user_path(post_comment.user), class: "action-link" do %>
         <%= image_tag post_comment.user.get_profile_image, size: "50x50", class: "profile-image mr-3" %><br>
+        <i class="fa-solid fa-user"></i>
         <%= post_comment.user.name %>
       <% end %>
     </td>
     <td><%= post_comment.comment %></td>
     <td>
       <% if post_comment.user == current_user %>
-        <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, remote: true, class: "btn btn-danger" %>
       <% end %>
     </td>
    </tr>

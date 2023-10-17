@@ -52,7 +52,7 @@
         <% else %>
           <%= link_to "フォローする", user_relationships_path(@user.id), method: :post, class:"btn btn-primary" %>
         <% end %>
-        <%= link_to chat_path(@user.id), class: "ml-3 action-link" do %>
+        <%= link_to chat_path(@user.id), class: "action-link ml-3" do %>
           <i class="fa-solid fa-comment-dots"></i>
           chatを始める
         <% end %>

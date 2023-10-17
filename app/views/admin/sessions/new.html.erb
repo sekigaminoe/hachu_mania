@@ -1,31 +1,21 @@
-<h2 class="heading ml-5">ログイン</h2>
+<h2 class="heading">ログイン</h2>
 
 <div class="container">
   <div class="row">
-    <div class="col-md-5 mx-auto">
+    <div class="col-sm-5 mx-auto">
       <table class="table table-borderless">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <tr>
             <td>
               <strong><%= f.label :メールアドレス %><br></strong>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                </div>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: "40" %>
-              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "field-size" %>
             </td>
           </tr>
 
           <tr>
             <td>
               <strong><%= f.label "パスワード" %><br /></strong>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
-                </div>
-                <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: "40" %>
-              </div>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
             </td>
           </tr>
 
