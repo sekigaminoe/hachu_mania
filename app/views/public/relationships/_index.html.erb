@@ -1,0 +1,44 @@
+<% if users.exists? %>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th class="relationship-index-heading">プロフィール画像</th>
+        <th class="relationship-index-heading">ユーザー名</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td class="relationship-index-body">
+            <%= link_to user_path(user) do %>
+              <%= image_tag user.get_profile_image, class: "profile-image relationship-profile-image" %>
+            <% end %>
+          </td>
+          <td class="relationship-index-body">
+            <%= link_to user_path(user), class: "action-link" do %>
+              <%= user.name %>
+            <% end %>
+          </td>
+          <td class="relationship-index-body">フォロー数:<%= user.followings.count %></td>
+          <td class="relationship-index-body">フォロワー数:<%= user.followers.count %></td>
+          <td>
+            <% if current_user != user %>
+              <% if current_user.following?(user) %>
+                <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class:"btn btn-info follow-button" %>
+              <% else %>
+                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class:"btn btn-primary follow-button" %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="mt-3">ユーザーはいません</p>
+<% end %>

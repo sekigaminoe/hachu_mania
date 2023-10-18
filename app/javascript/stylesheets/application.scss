@@ -1,12 +1,14 @@
 @use '~bootstrap/scss/bootstrap';
 
+//header
+
 .header-color {
   background-color: #bce2e8;
 }
 
-.main-visual {
-  width: 100%;
-  height: 500px;
+.logo {
+  width: 100px;
+  height: 90px;
 }
 
 .nav-link {
@@ -14,6 +16,15 @@
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+ //main
+ main {
+  margin-bottom: 100px;
+}
+
+.alert:not(:last-child){
+	margin-bottom: 0;
 }
 
 .heading {
@@ -24,26 +35,19 @@
   margin: 10px 0 0 20px;
 }
 
-// .nav-list {
-//   display: flex;
-//   text-transform: uppercase;
-//   margin-top: 34px;
-//   list-style: none;
-// }
+.action-link {
+  color: #696969;
+}
 
-// .header-item {
-//   display: flex;
-//   justify-content: space-between;
-// }
+//main-top
+.top-image {
+  width: 1000px;
+  height: 600px;
+}
 
-// .nav-item {
-//   margin-left: 20px;
-// }
-
-// // .wrapper{
-// //   margin: 0 auto;
-// //   padding: 0 4%;
-// // }
+.main-visual-text {
+  background-color: #fff3b8;
+}
 
 .info-text {
   text-align: center;
@@ -53,68 +57,7 @@
   border-radius: 50%;
 }
 
-.logo {
-  width: 100px;
-  height: 90px;
-}
-
-
-input[type="text"] {
-  width: 400px;
-}
-
-input[type="password"] {
-  width: 400px;
-}
-
-input[type="email"] {
-  width: 400px;
-}
-
-.card {
-  width: 17rem;
-}
-
-.card-detail {
-  width: 25rem;
-}
-
-.main-visual-text {
-  background-color: #fff3b8;
-}
-
-.text {
-  border-bottom: 1px solid;
-}
-
-.card-height {
-  height: 320px;
-  width: 250px;
-}
-
-.card-image {
-  padding-top: 10px;
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
-.status-false {
-  color: #00a968;
-}
-
-.status-true {
-  color: #e8383d;
-}
-
-.group-action {
-  margin-right: 800px;
-}
-
-.mail-card {
-  height: 450px;
-  width: 400px;
-}
-
+//main-top-genre-search
 .genre-card {
   width: 200px;
 }
@@ -127,22 +70,83 @@ input[type="email"] {
   color: black;
 }
 
-.action-link {
-  color: #696969;
+.genre-action-link {
+  margin-top: 30px;
 }
 
-.alert:not(:last-child){
-	margin-bottom: 0;
+//main-form
+input[type="text"] {
+  width: 350px;
 }
 
-footer {
-  background-color: #a0d8ef;
+input[type="password"] {
+  width: 350px;
 }
 
-main {
-  margin-bottom: 100px;
+input[type="email"] {
+  width: 350px;
 }
 
+//main-card
+.card {
+  width: 17rem;
+}
+
+.card-detail {
+  width: 25rem;
+}
+
+.card-height {
+  height: 320px;
+  width: 250px;
+}
+
+.card-profile-image {
+  padding-top: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+//main-mail-card (public/event_notices/sent)
+.mail-card {
+  height: 450px;
+  width: 400px;
+}
+
+//main-pagenation
+.pagenation {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+//main-status (public/users/edit, admin/users/index, edit)
+.status-false {
+  color: #00a968;
+}
+
+.status-true {
+  color: #e8383d;
+}
+
+//main-group-link (public/users/inex, groups/index, edit, new, show)
+.group-action {
+  margin-right: 800px;
+}
+
+.new-group-link {
+  margin-top: 25px;
+}
+
+.index-group-link {
+  margin-top: 25px;
+}
+
+//main-post-comment (public/posts/show, admin/posts/show)
+.comments {
+  margin-left: 80px;
+}
+
+//main-chat (public/chats/show)
 .chat-text1 {
   background-color: #f0f8ff;
   padding: 10px 10px;
@@ -153,6 +157,36 @@ main {
   background-color: #f0ffff;
   padding: 10px 10px;
   border-radius: 10px;
+}
+
+//main-favorite-image (public/users/favorites)
+.favorite-post-image {
+  width: 100px;
+  height: 60px;
+}
+
+//main-relationship (public/relationships/followings, followers)
+.relationship-profile-image {
+  width: 50px;
+  height: 50px;
+}
+
+
+//main-users (public/users/ineex)
+ .users-profile-image {
+  width: 50px;
+  height: 50px;
+}
+
+//main-groups (public/groups/index)
+.groups-profile-image {
+    width: 50px;
+    height: 50px;
+  }
+
+//footer
+footer {
+  background-color: #a0d8ef;
 }
 
 @media screen and (max-width:425px) {
@@ -169,22 +203,27 @@ main {
   }
 
   .logo {
-  width: 60px;
-  height: 60px;
+    width: 60px;
+    height: 60px;
   }
 
   .nav-item {
-  text-align: center;
-  padding: 10px 0;
-  margin: 0 auto;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0 auto;
   }
 
   .input-group {
     display: none;
   }
 
+  .top-image {
+    width: 100%;
+    height: 250px;
+  }
+
   input[type="text"] {
-  width: 300px;
+    width: 300px;
   }
 
   input[type="password"] {
@@ -200,7 +239,93 @@ main {
   }
 
   .nav-link {
-  padding: 0;
+    padding: 0;
+  }
+
+  .new-group-link {
+    margin-top: 15px;
+  }
+
+  .index-group-link {
+    margin-top: 15px;
+  }
+
+  .comments {
+    margin-left: 25px;
+  }
+
+  .genre-action-link {
+    margin-top: 20px;
+  }
+
+  .card-content {
+    justify-content: center;
+  }
+
+  .favorite-index-heading {
+    font-size: 8px;
+  }
+
+  .group-action {
+    margin-right: 50px;
+  }
+
+  .favorite-post-image {
+    width: 80px;
+    height: 50px;
+  }
+
+  .favorite-index-body {
+    font-size: 10px;
+  }
+
+  .relationship-index-heading {
+    font-size: 8px;
+  }
+
+  .relationship-index-body {
+    font-size: 9px;
+  }
+
+  .relationship-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .follow-button {
+    width: 60px;
+    height: 23px;
+    font-size: 6px;
+  }
+
+  .users-heading {
+    font-size: 8px;
+  }
+
+  .users-body {
+    font-size: 10px;
+  }
+
+  .users-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-heading {
+    font-size: 15px;
+  }
+
+  .groups-heading {
+    font-size: 8px;
+  }
+
+  .groups-body {
+    font-size: 10px;
+  }
+
+  .groups-profile-image {
+    width: 40px;
+    height: 40px;
   }
 
   main {

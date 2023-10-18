@@ -8,24 +8,14 @@
           <tr>
             <td>
               <strong><%= f.label :メールアドレス %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                </div>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: "40" %>
-              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
             </td>
           </tr>
 
           <tr>
             <td>
               <strong><%= f.label :パスワード %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
-                </div>
-                <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", size: "40" %>
-              </div>
+              <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
             </td>
           </tr>
 

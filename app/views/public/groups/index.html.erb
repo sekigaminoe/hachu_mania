@@ -1,6 +1,6 @@
 <div class="d-flex">
   <h2 class="heading group-action">グループ一覧</h2>
-  <%= link_to "グループ作成", new_group_path(@group), class: "btn btn-success mt-3" %>
+  <%= link_to "グループ作成", new_group_path(@group), class: "new-group-link btn btn-sm btn-success" %>
 </div>
 
 <div class="container">
@@ -8,11 +8,10 @@
     <table class="table mt-3">
       <thead>
         <tr>
-          <th>グループ画像</th>
-          <th>グループ名</th>
-          <th>人数</th>
-          <th>オーナー名</th>
-          <th>紹介文</th>
+          <th class="groups-heading">グループ画像</th>
+          <th class="groups-heading">グループ名</th>
+          <th class="groups-heading">人数</th>
+          <th class="groups-heading">紹介文</th>
           <th></th>
         </tr>
       </thead>
@@ -21,25 +20,19 @@
           <tr>
             <td>
               <%= link_to group_path(group) do %>
-                <%= image_tag group.get_group_image, size: "50x50", class: "profile-image" %>
+                <%= image_tag group.get_group_image, class: "profile-image groups-profile-image" %>
               <% end %>
             </td>
-            <td>
+            <td class="groups-body">
               <%= link_to group_path(group), class: "action-link" do %>
                 <%= group.name %>
               <% end %>
             </td>
-            <td><%= group.group_users.count %></td>
-            <td>
-              <%= link_to user_path(@user), class: "action-link" do %>
-                <i class="fa-solid fa-user"></i>
-                <%= group.owner.name %>
-              <% end %>
-            </td>
-            <td><%= group.introduction %></td>
+            <td class="groups-body"><%= group.group_users.count %></td>
+            <td class="groups-body"><%= group.introduction %></td>
             <td>
               <% if group.is_owned_by?(current_user) %>
-                <%= link_to "編集", edit_group_path(group), class: "btn btn-success" %>
+                <%= link_to "編集", edit_group_path(group), class: "btn btn-sm btn-success" %>
               <% end %>
             </td>
           </tr>

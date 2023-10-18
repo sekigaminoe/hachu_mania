@@ -1,14 +1,14 @@
 <div class="d-flex">
   <h2 class="heading group-action">グループ詳細</h2>
-  <%= link_to "グループ一覧", groups_path, class: "btn btn-primary mt-3" %>
+  <%= link_to "グループ一覧", groups_path, class: "index-group-link btn btn-sm btn-primary" %>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-2 mt-3">
+    <div class="col-sm-2 mt-3">
       <%= image_tag @group.get_group_image, size: "100x100", class: "profile-image" %>
     </div>
-    <div class="col-6">
+    <div class="col-sm-6">
       <table class="table table-borderless">
         <tr>
           <th>グループ名</th>
@@ -35,7 +35,7 @@
         </tr>
       </table>
     </div>
-    <div class="col-4 mt-3">
+    <div class="col-sm-4 mt-3">
       <% if @group.is_owned_by?(current_user) %>
         <%= link_to "編集", edit_group_path(@group), class: "btn btn-success mr-3" %>
         <%= link_to "削除", group_path, method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %><br>

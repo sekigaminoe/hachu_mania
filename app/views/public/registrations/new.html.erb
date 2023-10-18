@@ -1,4 +1,4 @@
-<h2 class="heading ml-5">新規登録</h2>
+<h2 class="heading">新規登録</h2>
 
 <div class="container">
   <div class="row">
@@ -10,24 +10,14 @@
           <tr>
             <td>
               <strong><%= f.label "ユーザー名" %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-user"></i></span>
-                </div>
-                <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", size: "40", class: "form-control" %>
-              </div>
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名" %>
             </td>
           </tr>
 
           <tr>
             <td>
               <strong><%= f.label "メールアドレス" %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-envelope"></i></span>
-                </div>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: "40", class: "form-control" %>
-              </div>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
               </div>
             </td>
           </tr>
@@ -35,24 +25,14 @@
           <tr>
             <td>
               <strong><%= f.label "パスワード(6文字以上)" %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
-                </div>
-                <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", size: "40", class: "form-control" %>
-              </div>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %>
             </td>
           </tr>
 
           <tr>
             <td>
               <strong><%= f.label "パスワード(確認用)" %></strong><br>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" aria-hidden="true"><i class="fas fa-lock"></i></span>
-                </div>
-                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード", size: "40", class: "form-control" %>
-              </div>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード" %>
             </td>
           </tr>
 

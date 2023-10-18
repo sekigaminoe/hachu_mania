@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <% @posts.each do |post| %>
-      <div class="col-md-3">
+      <div class="col-sm-3">
         <div class="card mt-4 shadow-lg">
           <%= link_to admin_post_path(post) do %>
             <%= image_tag post.get_post_image, class: "card-img-top" %>
@@ -28,7 +28,7 @@
       </div>
     <% end %>
   </div>
-  <div class="row justify-content-center mt-5">
+  <div class="row pagenation">
     <%= paginate @posts %>
   </div>
 </div>

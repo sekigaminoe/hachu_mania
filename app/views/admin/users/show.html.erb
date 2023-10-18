@@ -5,26 +5,26 @@
     <div class="col-2 mt-3">
       <%= image_tag @user.get_profile_image, size:'100x100', class: "profile-image" %>
     </div>
-    <div class="col-8">
+    <div class="col-sm-6">
       <table class="table table-borderless">
         <tr>
-          <th>ユーザーID</th>
+          <th class="user-heading">ユーザーID</th>
           <td><%= @user.id %></td>
         </tr>
         <tr>
-          <th>ユーザー名</th>
+          <th class="user-heading">ユーザー名</th>
           <td><%= @user.name %></td>
         </tr>
         <tr>
-          <th>メールアドレス</th>
+          <th class="user-heading">メールアドレス</th>
           <td><%= @user.email %></td>
         </tr>
         <tr>
-          <th>自己紹介</th>
+          <th class="user-heading">自己紹介</th>
           <td><%= @user.introduction %></td>
         </tr>
         <tr>
-          <th>ステータス</th>
+          <th class="user-heading">ステータス</th>
           <td>
             <% if @user.is_deleted %>
               <p class="status-true"><strong>退会</strong></p>
@@ -35,14 +35,14 @@
         </tr>
       </table>
     </div>
-    <div class="col-2">
+    <div class="col-sm-2">
       <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %>
     </div>
   </div>
-  <div class="row mt-3">
+  <div class="row">
     <% @user.posts.each do |post| %>
-      <div class="col-md-3">
-        <div class="card">
+      <div class="col-sm-3">
+        <div class="card mt-3 shadow-lg">
           <%= link_to admin_post_path(post) do %>
             <%= image_tag post.get_post_image, class: "card-img-top" %>
           <% end %>

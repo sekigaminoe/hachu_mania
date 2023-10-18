@@ -1,29 +1,29 @@
-<h2 class="heading ml-5">ユーザー一覧</h2>
+<h2 class="heading">ユーザー一覧</h2>
 
 <div class="container">
   <div class="row">
     <table class="table mt-3">
       <thead>
         <tr>
-          <th>ユーザーID</th>
-          <th>プロフィール画像</th>
-          <th>ユーザー名</th>
-          <th>メールアドレス</th>
-          <th>ステータス</th>
+          <th class="users-heading">ユーザーID</th>
+          <th class="users-heading">プロフィール画像</th>
+          <th class="users-heading">ユーザー名</th>
+          <th class="users-heading">メールアドレス</th>
+          <th class="users-heading">ステータス</th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.id %></td>
+            <td class="users-body"><%= user.id %></td>
             <td>
               <%= link_to admin_user_path(user) do %>
-                <%= image_tag user.get_profile_image, size: "50x50", class: "profile-image" %>
+                <%= image_tag user.get_profile_image, class: "profile-image users-profile-image" %>
               <% end %>
             </td>
-            <td><%= link_to user.name, admin_user_path(user), class: "action-link" %></td>
-            <td><%= user.email %></td>
-            <td>
+            <td class="users-body"><%= link_to user.name, admin_user_path(user), class: "action-link" %></td>
+            <td class="users-body"><%= user.email %></td>
+            <td class="users-body">
               <% if user.is_deleted %>
                 <p class="status-true"><strong>退会</strong></p>
               <% else %>
@@ -35,7 +35,7 @@
       </tbody>
     </table>
   </div>
-  <div class="row justify-content-center mt-3">
+  <div class="row pagenation">
     <%= paginate @users %>
   </div>
 </div>
