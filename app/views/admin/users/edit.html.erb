@@ -10,7 +10,7 @@
         <%= form_with model: @user, url: admin_user_path, local: true, method: :patch do |f| %>
           <tr>
             <td>
-              <strong>ユーザーID</strong><br>
+              <strong><%= f.label :ユーザーID %></strong><br>
               <%= @user.id %>
             </td>
           </tr>

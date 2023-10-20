@@ -6,8 +6,8 @@ class Post < ApplicationRecord
 
   has_one_attached :post_image
 
-  validates :title, length: { maximum: 15 }, presence: true
-  validates :body, length: { maximum: 80 }, presence: true
+  validates :title, presence: true, length: { maximum: 15 }
+  validates :body, presence: true, length: { maximum: 80 }
 
   def get_post_image
     (post_image.attached?) ? post_image : "no_image.png"

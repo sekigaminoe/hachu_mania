@@ -6,10 +6,11 @@
       <%= form_with model: @genre, url: admin_genres_path do |f| %>
         <div class="mr-5 d-inline-block"><strong><%= f.label :ジャンル名 %></strong></div>
         <div class="mr-5 d-inline-block"><%= f.text_field :name, placeholder: "ジャンル名" %></div>
-        <%= f.submit class:"btn btn-success genre-action-link" %>
+        <%= f.submit class: "btn btn-success genre-link" %>
       <% end %>
     </div>
   </div>
+
   <div class="row justify-content-center">
     <div class="col-sm-5 mt-5">
       <table class="table">

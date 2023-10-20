@@ -2,8 +2,8 @@
   <table class="table mt-3">
     <thead>
       <tr>
-        <th class="relationship-index-heading">プロフィール画像</th>
-        <th class="relationship-index-heading">ユーザー名</th>
+        <th class="relationships-heading">プロフィール画像</th>
+        <th class="relationships-heading">ユーザー名</th>
         <th></th>
         <th></th>
         <th></th>
@@ -14,18 +14,22 @@
     <tbody>
       <% users.each do |user| %>
         <tr>
-          <td class="relationship-index-body">
+          <td class="relationships-body">
             <%= link_to user_path(user) do %>
               <%= image_tag user.get_profile_image, class: "profile-image relationship-profile-image" %>
             <% end %>
           </td>
-          <td class="relationship-index-body">
+
+          <td class="relationships-body">
             <%= link_to user_path(user), class: "action-link" do %>
               <%= user.name %>
             <% end %>
           </td>
-          <td class="relationship-index-body">フォロー数:<%= user.followings.count %></td>
-          <td class="relationship-index-body">フォロワー数:<%= user.followers.count %></td>
+
+          <td class="relationships-body">フォロー数:<%= user.followings.count %></td>
+
+          <td class="relationships-body">フォロワー数:<%= user.followers.count %></td>
+
           <td>
             <% if current_user != user %>
               <% if current_user.following?(user) %>

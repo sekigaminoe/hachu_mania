@@ -1,7 +1,6 @@
 @use '~bootstrap/scss/bootstrap';
 
 //header
-
 .header-color {
   background-color: #bce2e8;
 }
@@ -87,12 +86,12 @@ input[type="email"] {
   width: 350px;
 }
 
-//main-card
+//main-card (public/posts/show, index, users/index, admin/homes/top, posts/show)
 .card {
   width: 17rem;
 }
 
-.card-detail {
+.post-card {
   width: 25rem;
 }
 
@@ -128,7 +127,7 @@ input[type="email"] {
   color: #e8383d;
 }
 
-//main-group-link (public/users/inex, groups/index, edit, new, show)
+//main-group-link (public/users/inex, groups/index, edit, new, show, event_notices_sent)
 .group-action {
   margin-right: 800px;
 }
@@ -141,9 +140,14 @@ input[type="email"] {
   margin-top: 25px;
 }
 
-//main-post-comment (public/posts/show, admin/posts/show)
+//main-comment (public/posts/show, admin/posts/show)
 .comments {
   margin-left: 80px;
+}
+
+.comments-profile-image {
+  width: 50px;
+  height: 50px;
 }
 
 //main-chat (public/chats/show)
@@ -172,7 +176,7 @@ input[type="email"] {
 }
 
 
-//main-users (public/users/ineex)
+//main-users (admin/users/index)
  .users-profile-image {
   width: 50px;
   height: 50px;
@@ -190,16 +194,12 @@ footer {
 }
 
 @media screen and (max-width:425px) {
+  //header
   header {
     width: 100%;
     padding: 15px 0;
     margin: 0 auto;
     position: relative;
-  }
-
-  .heading {
-    margin-left: 5px;
-    font-size: 20px;
   }
 
   .logo {
@@ -213,6 +213,10 @@ footer {
     margin: 0 auto;
   }
 
+  .nav-link {
+    padding: 0;
+  }
+
   .input-group {
     display: none;
   }
@@ -222,6 +226,18 @@ footer {
     height: 250px;
   }
 
+  //main
+  main {
+    width: 100%;
+    display: block;
+  }
+
+  .heading {
+    margin-left: 5px;
+    font-size: 16px;
+  }
+
+  //main-form
   input[type="text"] {
     width: 300px;
   }
@@ -238,81 +254,18 @@ footer {
     width: 300px;
   }
 
-  .nav-link {
-    padding: 0;
-  }
+  //main-group (public/users/index, groups/show, index, edit, now, event-notices/sent)
 
   .new-group-link {
-    margin-top: 15px;
+    margin-top: 12px;
   }
 
   .index-group-link {
-    margin-top: 15px;
-  }
-
-  .comments {
-    margin-left: 25px;
-  }
-
-  .genre-action-link {
-    margin-top: 20px;
-  }
-
-  .card-content {
-    justify-content: center;
-  }
-
-  .favorite-index-heading {
-    font-size: 8px;
+    margin-top: 12px;
   }
 
   .group-action {
     margin-right: 50px;
-  }
-
-  .favorite-post-image {
-    width: 80px;
-    height: 50px;
-  }
-
-  .favorite-index-body {
-    font-size: 10px;
-  }
-
-  .relationship-index-heading {
-    font-size: 8px;
-  }
-
-  .relationship-index-body {
-    font-size: 9px;
-  }
-
-  .relationship-profile-image {
-    width: 40px;
-    height: 40px;
-  }
-
-  .follow-button {
-    width: 60px;
-    height: 23px;
-    font-size: 6px;
-  }
-
-  .users-heading {
-    font-size: 8px;
-  }
-
-  .users-body {
-    font-size: 10px;
-  }
-
-  .users-profile-image {
-    width: 40px;
-    height: 40px;
-  }
-
-  .user-heading {
-    font-size: 15px;
   }
 
   .groups-heading {
@@ -328,11 +281,91 @@ footer {
     height: 40px;
   }
 
-  main {
-    width: 100%;
-    display: block;
+  //main-comment (public/posts/show, admin/posts/show)
+  .comments {
+    margin-left: 25px;
   }
 
+  .comments-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+   //main-post-card (public/posts/index, show, admin/posts/index, show)
+  .card-content {
+    justify-content: center;
+  }
+
+  .posts-card {
+    margin-left: 40px;
+  }
+
+  //main-genre (admin/genres/index, edit)
+  .genre-link {
+    margin-top: 20px;
+  }
+
+ //main-favorite (public/posts/index, show, users/show, favorites)
+  .favorites-heading {
+    font-size: 8px;
+  }
+
+  .favorites-body {
+    font-size: 10px;
+  }
+
+  .favorite-post-image {
+    width: 80px;
+    height: 50px;
+  }
+
+  //main-relationship (public/users/inedex, show, relationships/followers, followings)
+  .relationships-heading {
+    font-size: 8px;
+  }
+
+  .relationships-body {
+    font-size: 9px;
+  }
+
+  .relationship-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .follow-button {
+    width: 60px;
+    height: 23px;
+    font-size: 6px;
+  }
+
+//main-users (admin/users/index, admin/users/show)
+  .users-heading {
+    font-size: 8px;
+  }
+
+  .users-body {
+    font-size: 10px;
+  }
+
+  .users-profile-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-post-card {
+    margin-left: 50px;
+  }
+
+  .user-heading {
+    font-size: 15px;
+  }
+
+  .users-card {
+    margin-left: 50px;
+  }
+
+  //footer
   footer {
     width: 100%;
   }

@@ -7,7 +7,7 @@
 <div class="container">
   <div class="row">
     <div class="col-2 mt-3">
-      <%= image_tag @user.get_profile_image, size:'100x100', class: "profile-image" %>
+      <%= image_tag @user.get_profile_image, size: "100x100", class: "profile-image" %>
     </div>
     <div class="col-sm-6">
       <table class="table table-borderless">
@@ -15,12 +15,14 @@
           <th>ユーザー名</th>
           <td><%= @user.name %></td>
         </tr>
+
         <tr>
           <% if @user.id == current_user.id %>
             <th>メールアドレス</th>
             <td><%= @user.email %></td>
           <% end %>
         </tr>
+
         <tr>
           <th>自己紹介</th>
           <td><%= @user.introduction %></td>
@@ -31,6 +33,7 @@
       <div class="col-sm-1">
         <%= link_to "編集", edit_user_path(@user), class: "btn btn-success" %>
       </div>
+
       <div class="col-sm-3">
         <%= link_to favorites_user_path(@user), class: "action-link" do %>
           <i class="fa-solid fa-heart"></i>
@@ -62,20 +65,23 @@
 
   <div class="row">
     <% @user.posts.each do |post| %>
-      <div class="col-sm-3">
+      <div class="col-sm-3 user-post-card">
         <div class="card mt-3 shadow-lg">
           <%= link_to post_path(post.id) do %>
             <%= image_tag post.get_post_image, class: "card-img-top" %>
           <% end %>
+
           <div class="card-body">
             <div class="row">
               <div class="col-8 px-0">
                 <p>投稿日:<%= post.updated_at.strftime("%Y/%m/%d") %></p>
               </div>
+
               <div class="col-2 px-0">
                 <%= render "public/favorites/btn", post: post %>
               </div>
             </div>
+
             <p>[ジャンル] <%= post.genre.name %></p>
             <p>
               <%= link_to post_path(post), class: "action-link" do %>
@@ -102,6 +108,7 @@
       </div>
     <% end %>
   </div>
+
   <div class="row pagenation">
     <%= paginate @posts %>
   </div>

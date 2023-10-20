@@ -5,32 +5,36 @@
     <table class="table mt-3">
       <thead>
         <tr>
-          <th class="favorite-index-heading">投稿写真</th>
-          <th class="favorite-index-heading">タイトル</th>
-          <th class="favorite-index-heading">ジャンル</th>
-          <th class="favorite-index-heading">ユーザー名</th>
+          <th class="favorites-heading">投稿写真</th>
+          <th class="favorites-heading">タイトル</th>
+          <th class="favorites-heading">ジャンル</th>
+          <th class="favorites-heading">ユーザー名</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <% @favorite_posts.each do |post| %>
           <tr>
-            <td class="favorite-index-body">
+            <td class="favorites-body">
               <%= link_to post_path(post) do %>
                 <%= image_tag post.get_post_image, class: "favorite-post-image" %>
               <% end %>
             </td>
-            <td class="favorite-index-body">
+
+            <td class="favorites-body">
               <%= link_to post_path(post), class: "action-link" do %>
                 <%= post.title %>
               <% end %>
             </td>
-            <td class="favorite-index-body"><%= post.genre.name %> </td>
-            <td class="favorite-index-body">
+
+            <td class="favorites-body"><%= post.genre.name %> </td>
+
+            <td class="favorites-body">
               <%= link_to user_path(post.user), class: "action-link" do %>
                 <%= post.user.name %>
               <% end %>
             </td>
+
             <td>
               <%= render "public/favorites/btn", post: post %>
             </td>

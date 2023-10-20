@@ -7,14 +7,14 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <tr>
             <td>
-              <strong><%= f.label :メールアドレス %><br></strong>
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "field-size" %>
+              <strong><%= f.label :メールアドレス %></strong><br>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
             </td>
           </tr>
 
           <tr>
             <td>
-              <strong><%= f.label "パスワード" %><br /></strong>
+              <strong><%= f.label :パスワード %></strong><br>
               <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
             </td>
           </tr>

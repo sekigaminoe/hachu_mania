@@ -6,7 +6,7 @@
   <div class="row">
     <%= render "public/posts/index", posts: @posts %>
   </div>
-  <div class="row justify-content-center mt-5">
+  <div class="row pagenation">
     <%= paginate @posts %>
   </div>
 </div>

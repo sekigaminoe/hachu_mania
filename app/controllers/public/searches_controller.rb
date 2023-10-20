@@ -6,5 +6,4 @@ class Public::SearchesController < ApplicationController
     @posts = Post.where(genre_id: @genre_id).page(params[:page]).per(4)
     @genre = Genre.find(params[:genre_id])
   end
-
 end

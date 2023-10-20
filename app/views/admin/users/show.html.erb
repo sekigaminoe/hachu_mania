@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-2 mt-3">
-      <%= image_tag @user.get_profile_image, size:'100x100', class: "profile-image" %>
+      <%= image_tag @user.get_profile_image, size: "100x100", class: "profile-image" %>
     </div>
     <div class="col-sm-6">
       <table class="table table-borderless">
@@ -11,18 +11,22 @@
           <th class="user-heading">ユーザーID</th>
           <td><%= @user.id %></td>
         </tr>
+
         <tr>
           <th class="user-heading">ユーザー名</th>
           <td><%= @user.name %></td>
         </tr>
+
         <tr>
           <th class="user-heading">メールアドレス</th>
           <td><%= @user.email %></td>
         </tr>
+
         <tr>
           <th class="user-heading">自己紹介</th>
           <td><%= @user.introduction %></td>
         </tr>
+
         <tr>
           <th class="user-heading">ステータス</th>
           <td>
@@ -35,10 +39,12 @@
         </tr>
       </table>
     </div>
+
     <div class="col-sm-2">
       <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %>
     </div>
   </div>
+
   <div class="row">
     <% @user.posts.each do |post| %>
       <div class="col-sm-3">
@@ -60,7 +66,8 @@
       </div>
     <% end %>
   </div>
-  <div class="row justify-content-center mt-3">
+
+  <div class="row pagenation">
     <%= paginate @posts %>
   </div>
 </div>
