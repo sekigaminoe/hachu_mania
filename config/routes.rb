@@ -47,5 +47,7 @@ Rails.application.routes.draw do
     get "search" => "posts#search"
     get "/genre/search" => "searches#genre_search"
   end
+
+  get '/favicon.ico', to: redirect('/assets/favicon.ico')
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
