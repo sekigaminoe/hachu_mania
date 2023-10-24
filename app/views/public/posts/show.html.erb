@@ -45,7 +45,7 @@
                 <% end %>
               </p>
               <p>
-                <%= link_to user_path(@post.user), method: :delete, data: {confirm: "削除しますか？"}, class: "action-link" do %>
+                <%= link_to po_path(@post), method: :delete, data: {confirm: "削除しますか？"}, class: "action-link" do %>
                   <i class="fa-solid fa-trash"></i>
                   削除
                 <% end %>
