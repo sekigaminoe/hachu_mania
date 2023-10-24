@@ -37,6 +37,7 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post), notice: "編集内容を更新しました。"
     else
+      @genres = Genre.all
       render :edit, alert: "編集内容の更新に失敗しました。"
     end
   end
