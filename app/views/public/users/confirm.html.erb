@@ -13,6 +13,6 @@
 
   <div class="row justify-content-center mt-5">
     <%= link_to "退会しない", user_path(current_user), class: "btn btn-primary mr-5" %>
-    <%= link_to "退会する", user_path(current_user), method: :delete, class: "btn btn-danger" %>
+    <%= link_to "退会する", users_withdrawal_user_path, method: :patch, class: "btn btn-danger" %>
   </div>
 </div>
