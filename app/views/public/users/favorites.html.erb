@@ -35,7 +35,7 @@
               <% end %>
             </td>
 
-            <td>
+            <td class=<%= "favorite-" + post.id.to_s %> >
               <%= render "public/favorites/btn", post: post %>
             </td>
           </tr>
