@@ -9,7 +9,7 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def destroy
-    @comment = PostComment.find(params[:id])
+    @comment = PostComment.find_by(id: params[:id], post_id: params[:post_id])
     @comment.destroy
   end
 
