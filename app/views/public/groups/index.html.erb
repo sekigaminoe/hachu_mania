@@ -20,7 +20,7 @@
           <tr>
             <td>
               <%= link_to group_path(group) do %>
-                <%= image_tag group.get_group_image, class: "profile-image groups-profile-image" %>
+                <%= image_tag group.get_group_image, class: "profile-image-design profile-image" %>
               <% end %>
             </td>
             <td class="groups-body">
@@ -32,7 +32,7 @@
             <td class="groups-body"><%= group.introduction %></td>
             <td>
               <% if group.is_owned_by?(current_user) %>
-                <%= link_to "編集", edit_group_path(group), class: "btn btn-sm btn-success" %>
+                <%= link_to "編集", edit_group_path(group), class: "btn btn-sm btn-success groups-edit-button-size" %>
               <% end %>
             </td>
           </tr>

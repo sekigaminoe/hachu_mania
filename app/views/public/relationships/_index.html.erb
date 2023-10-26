@@ -16,7 +16,7 @@
         <tr>
           <td class="relationships-body">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image, class: "profile-image relationship-profile-image" %>
+              <%= image_tag user.get_profile_image, class: "profile-image-design profile-image" %>
             <% end %>
           </td>
 
@@ -33,9 +33,9 @@
           <td>
             <% if current_user != user %>
               <% if current_user.following?(user) %>
-                <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class:"btn btn-info follow-button" %>
+                <%= link_to "フォロー中", user_relationships_path(user.id), method: :delete, class: "btn btn-info follow-button" %>
               <% else %>
-                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class:"btn btn-primary follow-button" %>
+                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-primary follow-button" %>
               <% end %>
             <% end %>
           </td>

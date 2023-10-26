@@ -12,13 +12,14 @@
           <th class="users-heading">ステータス</th>
         </tr>
       </thead>
+
       <tbody>
         <% @users.each do |user| %>
           <tr>
             <td class="users-body"><%= user.id %></td>
             <td>
               <%= link_to admin_user_path(user) do %>
-                <%= image_tag user.get_profile_image, class: "profile-image users-profile-image" %>
+                <%= image_tag user.get_profile_image, class: "profile-image-design profile-image" %>
               <% end %>
             </td>
             <td class="users-body"><%= link_to user.name, admin_user_path(user), class: "action-link" %></td>

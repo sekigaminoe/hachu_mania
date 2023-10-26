@@ -11,7 +11,7 @@
         <div class="card mt-4 shadow-lg card-height">
           <div class="card-profile-image">
             <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image, size: "200x200", class: "card-img-top profile-image" %>
+              <%= image_tag user.get_profile_image, size: "200x200", class: "card-img-top profile-image-design" %>
             <% end %>
           </div>
 
@@ -25,12 +25,12 @@
                   <% end %>
                 </p>
               </div>
-              
+
               <div class="col-6 px-0">
                 <%= render "public/relationships/btn", user: user %>
               </div>
             </div>
-            
+
             <p>投稿数：<%= user.posts.count %></p>
           </div>
         </div>

@@ -48,12 +48,19 @@
   background-color: #fff3b8;
 }
 
-.info-text {
-  text-align: center;
+.profile-image-design {
+  border-radius: 50%;
 }
 
+ //main-profile-image (public/post_comments/index, groups/index, posts/show, chats/show, relationships/_index, admin/post_comments/index, posts/show, users/index)
 .profile-image {
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+//main-session (public/sessions/new, registrations/new)
+.info-text {
+  text-align: center;
 }
 
 //main-top-genre-search
@@ -145,9 +152,9 @@ input[type="email"] {
   margin-left: 80px;
 }
 
-.comments-profile-image {
-  width: 50px;
-  height: 50px;
+.comment-form-size {
+  width: 350px;
+  height: 60px;
 }
 
 //main-chat (public/chats/show)
@@ -169,29 +176,10 @@ input[type="email"] {
   height: 60px;
 }
 
-//main-relationship (public/relationships/followings, followers)
-.relationship-profile-image {
-  width: 50px;
-  height: 50px;
-}
-
 //main-genre (admin/genres/index, edit)
 .genre-link {
   margin-top: 20px;
 }
-
-
-//main-users (admin/users/index)
- .users-profile-image {
-  width: 50px;
-  height: 50px;
-}
-
-//main-groups (public/groups/index)
-.groups-profile-image {
-    width: 50px;
-    height: 50px;
-  }
 
 //footer
 footer {
@@ -239,7 +227,18 @@ footer {
 
   .heading {
     margin-left: 5px;
-    font-size: 16px;
+    font-size: 18px;
+  }
+
+  //main-profile-image (public/post_comments/index, groups/index, posts/show, chats/show, relationships/_index, admin/post_comments/index, posts/show, users/index)
+  .profile-image {
+     width: 40px;
+     height: 40px;
+  }
+
+  //main-session (public/sessions/new, registrations/new)
+  .info-text {
+    font-size: 15px;
   }
 
   //main-form
@@ -262,11 +261,19 @@ footer {
   //main-group (public/users/index, groups/show, index, edit, now, event-notices/sent)
 
   .new-group-link {
-    margin-top: 12px;
+    margin-top: 15px;
+    width: 80px;
+    height: 28px;
+    font-size: 12px;
+    padding: 2px;
   }
 
   .index-group-link {
-    margin-top: 12px;
+    margin-top: 15px;
+    width: 80px;
+    height: 28px;
+    font-size: 12px;
+    padding: 2px;
   }
 
   .group-action {
@@ -281,9 +288,19 @@ footer {
     font-size: 10px;
   }
 
-  .groups-profile-image {
-    width: 40px;
-    height: 40px;
+  .groups-edit-button-size {
+    width: 45px;
+    height: 25px;
+    font-size: 11px;
+    padding: 3px;
+  }
+
+  .group-heading {
+    font-size: 15px;
+  }
+
+  .group-body {
+    font-size: 15px;
   }
 
   //main-comment (public/posts/show, admin/posts/show)
@@ -291,9 +308,13 @@ footer {
     margin-left: 25px;
   }
 
-  .comments-profile-image {
-    width: 40px;
-    height: 40px;
+  .comment-user-name {
+    font-size: 12px;
+  }
+
+  .comment-form-size {
+    width: 300px;
+    height: 50px;
   }
 
    //main-post-card (public/posts/index, show, admin/posts/index, show)
@@ -312,50 +333,41 @@ footer {
 
  //main-favorite (public/posts/index, show, users/show, favorites)
   .favorites-heading {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .favorites-body {
-    font-size: 10px;
+    font-size: 8px;
   }
 
   .favorite-post-image {
-    width: 80px;
-    height: 50px;
+    width: 75px;
+    height: 48px;
   }
 
   //main-relationship (public/users/inedex, show, relationships/followers, followings)
   .relationships-heading {
-    font-size: 8px;
+    font-size: 7px;
   }
 
   .relationships-body {
-    font-size: 9px;
-  }
-
-  .relationship-profile-image {
-    width: 40px;
-    height: 40px;
-  }
-
-  .follow-button {
-    width: 60px;
-    height: 23px;
-    font-size: 6px;
-  }
-
-//main-users (admin/users/index, admin/users/show)
-  .users-heading {
     font-size: 8px;
   }
 
-  .users-body {
-    font-size: 10px;
+  .follow-button {
+    width: 48px;
+    height: 16px;
+    font-size: 8px;
+    padding: 0;
   }
 
-  .users-profile-image {
-    width: 40px;
-    height: 40px;
+//main-users (admin/users/index, show, admin/users/index, show)
+  .users-heading {
+    font-size: 7px;
+  }
+
+  .users-body {
+    font-size: 8px;
   }
 
   .user-post-card {
@@ -366,8 +378,19 @@ footer {
     font-size: 15px;
   }
 
+  .user-body {
+    font-size: 15px;
+  }
+
   .users-card {
     margin-left: 50px;
+  }
+
+  .user-follow-button {
+    width: 85px;
+    height: 25px;
+    font-size: 12px;
+    padding: 2px;
   }
 
   //footer

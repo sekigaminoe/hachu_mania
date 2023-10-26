@@ -6,24 +6,24 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-2 mt-3">
-      <%= image_tag @group.get_group_image, size: "100x100", class: "profile-image" %>
+      <%= image_tag @group.get_group_image, size: "100x100", class: "profile-image-design" %>
     </div>
 
     <div class="col-sm-6">
       <table class="table table-borderless">
         <tr>
-          <th>グループ名</th>
-          <td><%= @group.name %></td>
+          <th class="group-heading">グループ名</th>
+          <td class="group-body"><%= @group.name %></td>
         </tr>
 
         <tr>
-          <th>紹介文</th>
-          <td><%= @group.introduction %></td>
+          <th class="group-heading">紹介文</th>
+          <td class="group-body"><%= @group.introduction %></td>
         </tr>
 
         <tr>
-          <th>メンバー</th>
-          <td>
+          <th class="group-heading">メンバー</th>
+          <td class="group-body">
             <% @group.users.each do |user| %>
               <%= user.name %>
             <% end %>
@@ -31,16 +31,16 @@
         </tr>
 
         <tr>
-          <th>オーナー名</th>
-          <td><%= @group.owner.name %></td>
+          <th class="group-heading">オーナー名</th>
+          <td class="group-body"><%= @group.owner.name %></td>
         </tr>
       </table>
     </div>
 
     <div class="col-sm-4 mt-3">
       <% if @group.is_owned_by?(current_user) %>
-        <%= link_to "編集", edit_group_path(@group), class: "btn btn-success mr-3" %>
-        <%= link_to "削除", group_path, method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %><br>
+        <%= link_to "編集", edit_group_path(@group), class: "btn btn-sm btn-success group-button mr-3" %>
+        <%= link_to "削除", group_path, method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger group-button" %><br>
         <%= link_to new_group_event_notice_path(@group), class: "action-link" do %>
           <i class="fa-solid fa-calendar-days"></i>
           イベントのお知らせを送る
