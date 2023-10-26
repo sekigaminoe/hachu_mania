@@ -26,7 +26,11 @@
 
         <div class="row">
           <div class="col-3">
-            <p><%= image_tag @post.user.get_profile_image, class: "profile-image-design profile-image" %></p>
+            <p>
+              <%= link_to user_path(@post.user) do %>
+                <%= image_tag @post.user.get_profile_image, class: "profile-image-design profile-image" %>
+              <% end %>
+            </p>
           </div>
           <div class="col-5 px-0">
             <p>
