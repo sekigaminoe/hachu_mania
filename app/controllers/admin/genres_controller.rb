@@ -11,6 +11,7 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to edit_admin_genre_path(@genre), notice: "登録しました"
     else
+      @genres = Genre.all
       render :index, alert: "登録に失敗しました"
     end
   end

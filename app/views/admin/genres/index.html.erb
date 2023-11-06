@@ -2,6 +2,10 @@
 
 <div class="container">
   <div class="row justify-content-center">
+    <%= render "layouts/errors", obj: @genre %>
+  </div>
+
+  <div class="row justify-content-center">
     <div class="col-sm-5 mt-3">
       <%= form_with model: @genre, url: admin_genres_path do |f| %>
         <div class="mr-5 d-inline-block"><strong><%= f.label :ジャンル名 %></strong></div>

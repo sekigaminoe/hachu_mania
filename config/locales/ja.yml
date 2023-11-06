@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       post: 投稿
       group: グループ
+      genre: ジャンル
     attributes:
       user:
         name: ユーザー名
@@ -19,6 +20,8 @@ ja:
         name: グループ名
         introduction: 紹介文
         group_image: グループ画像
+      genre:
+        name: ジャンル名
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
