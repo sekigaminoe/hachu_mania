@@ -2,6 +2,6 @@ class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
 
   def top
-    @posts = Post.page(params[:page]).per(4)
+    @posts = Post.page(params[:page]).per(4).order(created_at: :desc)
   end
 end

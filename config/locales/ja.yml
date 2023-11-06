@@ -1,5 +1,24 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      group: グループ
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        introduction: 自己紹介文
+        profile_image: プロフィール画像
+      post:
+        title: タイトル
+        body: 本文
+        genre: ジャンル
+      group:
+        name: グループ名
+        introduction: 紹介文
+        group_image: グループ画像
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -16,7 +35,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -42,7 +61,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月

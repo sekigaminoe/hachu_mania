@@ -157,6 +157,10 @@ input[type="email"] {
   height: 60px;
 }
 
+.post_comment_date {
+  font-size: 10px;
+}
+
 //main-chat (public/chats/show)
 .chat-text1 {
   background-color: #f0f8ff;
@@ -168,6 +172,10 @@ input[type="email"] {
   background-color: #f0ffff;
   padding: 10px 10px;
   border-radius: 10px;
+}
+
+.chat-date {
+  font-size: 10px;
 }
 
 //main-favorite-image (public/users/favorites)

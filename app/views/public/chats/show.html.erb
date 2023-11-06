@@ -15,6 +15,7 @@
         </p>
         <div style="text-align: right;">
           <span class="chat-text1"><%= chat.message %></span>
+          <p class="chat-date"><%= chat.created_at.strftime("%m/%d") %></p>
         </div>
       <% else %>
         <p style="text-align: left;">
@@ -28,6 +29,7 @@
         </p>
         <div style="text-align: left;">
           <span class="chat-text2"><% chat.message %></span>
+          <p class="chat-date"><%= chat.created_at.strftime("%m/%d") %></p>
         </div>
       <% end %>
     <% end %>

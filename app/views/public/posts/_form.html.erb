@@ -3,14 +3,14 @@
     <tr>
       <td>
         <strong><%= f.label :タイトル %></strong><br>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, placeholder: "15文字以内で入力してください" %>
       </td>
     </tr>
 
     <tr>
       <td>
         <strong><%= f.label :本文 %></strong><br>
-        <%= f.text_area :body, size: "40x5" %>
+        <%= f.text_area :body, size: "40x5", placeholder: "80文字以内で入力してください" %>
       </td>
     </tr>
 

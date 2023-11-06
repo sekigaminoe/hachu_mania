@@ -7,9 +7,10 @@
       <% end %>
     </td>
     <td><%= post_comment.comment %></td>
+    <td class="post_comment_date">投稿日:<%= post_comment.created_at.strftime("%m/%d") %></td>
     <td>
       <% if post_comment.user == current_user %>
-        <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger ml-3" %>
+        <%= link_to "削除", post_post_comment_path(post, post_comment), method: :delete, data: {confirm: "削除しますか？"}, remote: true, class: "btn btn-sm btn-danger ml-3" %>
       <% end %>
     </td>
    </tr>

@@ -49,4 +49,5 @@ class Public::GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image)
   end
+
 end

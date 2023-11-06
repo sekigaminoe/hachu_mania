@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
    before_action :authenticate_user!
+   before_action :ensure_correct_user, only: [:edit, :update]
 
   def new
     @post = Post.new
@@ -18,7 +19,7 @@ class Public::PostsController < ApplicationController
 
   def index
     @keyword = search_params[:keyword]
-    @posts = Post.search(@keyword).page(params[:page]).per(4)
+    @posts = Post.search(@keyword).page(params[:page]).per(4).order(created_at: :desc)
     @genres = Genre.all
   end
 
